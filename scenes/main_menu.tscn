@@ -1,0 +1,1332 @@
+[gd_scene load_steps=23 format=1]
+
+[ext_resource path="res://scripts/main_menu.gd" type="Script" id=1]
+[ext_resource path="res://scripts/sound.gd" type="Script" id=2]
+[ext_resource path="res://sounds/button_click.wav" type="Sample" id=3]
+[ext_resource path="res://sounds/button_enter.wav" type="Sample" id=4]
+[ext_resource path="res://sprites/textures.png" type="Texture" id=5]
+[ext_resource path="res://sprites/particles_blood.png" type="Texture" id=6]
+[ext_resource path="res://sprites/particles_blood2.png" type="Texture" id=7]
+[ext_resource path="res://fonts/pixel4.ttf" type="DynamicFontData" id=8]
+[ext_resource path="res://scripts/gradual_text.gd" type="Script" id=9]
+[ext_resource path="res://scripts/gui_utils/red_button.gd" type="Script" id=10]
+[ext_resource path="res://fonts/Pokemon_GB.ttf" type="DynamicFontData" id=11]
+[ext_resource path="res://scripts/gui_utils/checkbox.gd" type="Script" id=12]
+[ext_resource path="res://scripts/proc_anim.gd" type="Script" id=13]
+[ext_resource path="res://shaders/intro_logo.tres" type="CanvasItemMaterial" id=14]
+[ext_resource path="res://sprites/char_thief.png" type="Texture" id=15]
+
+[sub_resource type="SampleLibrary" id=1]
+
+samples/button_click = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 1,
+"sample": ExtResource( 3 )
+}
+samples/button_enter = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 1,
+"sample": ExtResource( 4 )
+}
+
+[sub_resource type="DynamicFont" id=2]
+
+font/size = 70
+font/use_mipmaps = false
+font/use_filter = false
+font/font = ExtResource( 8 )
+
+[sub_resource type="DynamicFont" id=3]
+
+font/size = 30
+font/use_mipmaps = false
+font/use_filter = false
+font/font = ExtResource( 11 )
+
+[sub_resource type="DynamicFont" id=4]
+
+font/size = 16
+font/use_mipmaps = false
+font/use_filter = false
+font/font = ExtResource( 8 )
+
+[sub_resource type="DynamicFont" id=5]
+
+font/size = 40
+font/use_mipmaps = false
+font/use_filter = false
+font/font = ExtResource( 8 )
+
+[sub_resource type="DynamicFont" id=6]
+
+font/size = 24
+font/use_mipmaps = false
+font/use_filter = false
+font/font = ExtResource( 11 )
+
+[sub_resource type="DynamicFont" id=7]
+
+font/size = 21
+font/use_mipmaps = false
+font/use_filter = false
+font/font = ExtResource( 11 )
+
+[node name="main_menu" type="Node2D" groups=[
+"main_menu",
+]]
+
+script/script = ExtResource( 1 )
+
+[node name="sound" type="Node2D" parent="." groups=[
+"sound",
+]]
+
+editor/display_folded = true
+script/script = ExtResource( 2 )
+
+[node name="gui" type="SamplePlayer2D" parent="sound"]
+
+params/volume_db = 0.0
+params/pitch_scale = 1.0
+params/attenuation/min_distance = 1.0
+params/attenuation/max_distance = 2048.0
+params/attenuation/distance_exp = 1.0
+config/polyphony = 1
+config/samples = SubResource( 1 )
+config/pitch_random = 0.0
+
+[node name="stream_player" type="StreamPlayer" parent="sound"]
+
+stream/stream = null
+stream/play = false
+stream/loop = false
+stream/volume_db = 0.0
+stream/autoplay = false
+stream/paused = false
+stream/loop_restart_time = 0.0
+stream/buffering_ms = 500
+
+[node name="tabs" type="Node2D" parent="."]
+
+[node name="tab_menu" type="Node2D" parent="tabs"]
+
+[node name="bg" type="Sprite" parent="tabs/tab_menu"]
+
+transform/pos = Vector2( -9.12247, -14.4399 )
+transform/scale = Vector2( 18.7428, 30.9789 )
+texture = ExtResource( 5 )
+centered = false
+modulate = Color( 0, 0, 0, 1 )
+region = true
+region_rect = Rect2( 0, 0, 24, 24 )
+
+[node name="back_particles" type="Node2D" parent="tabs/tab_menu"]
+
+editor/display_folded = true
+transform/pos = Vector2( 0, 50 )
+
+[node name="particles" type="Particles2D" parent="tabs/tab_menu/back_particles"]
+
+transform/pos = Vector2( 37.4218, 153.405 )
+transform/rot = 65.701
+config/amount = 70
+config/lifetime = 5.0
+config/process_mode = 1
+config/texture = ExtResource( 6 )
+params/direction = 0.0
+params/spread = 10.0
+params/linear_velocity = 150.0
+params/spin_velocity = 0.0
+params/orbit_velocity = 0.1
+params/gravity_direction = 0.0
+params/gravity_strength = 9.8
+params/radial_accel = 0.0
+params/tangential_accel = 0.0
+params/damping = 0.0
+params/initial_angle = 0.0
+params/initial_size = 30.0
+params/final_size = 10.0
+params/hue_variation = 0.0
+params/anim_speed_scale = 1.0
+params/anim_initial_pos = 0.0
+color/color = Color( 0.898438, 0, 0, 1 )
+
+[node name="particles1" type="Particles2D" parent="tabs/tab_menu/back_particles"]
+
+transform/pos = Vector2( 16.7729, 238.826 )
+transform/rot = 60.0562
+config/amount = 100
+config/lifetime = 3.2
+config/process_mode = 1
+config/texture = ExtResource( 7 )
+params/direction = 0.0
+params/spread = 10.0
+params/linear_velocity = 150.0
+params/spin_velocity = 0.0
+params/orbit_velocity = 0.1
+params/gravity_direction = 0.0
+params/gravity_strength = 100.0
+params/radial_accel = 0.0
+params/tangential_accel = 0.0
+params/damping = 0.0
+params/initial_angle = 0.0
+params/initial_size = 1.0
+params/final_size = 1.0
+params/hue_variation = 0.0
+params/anim_speed_scale = 1.0
+params/anim_initial_pos = 0.0
+randomness/gravity_strength = 1.0
+color/color = Color( 0.898438, 0, 0, 1 )
+
+[node name="particles3" type="Particles2D" parent="tabs/tab_menu/back_particles"]
+
+transform/pos = Vector2( -63.2271, 198.826 )
+transform/rot = 60.0562
+config/amount = 100
+config/lifetime = 3.2
+config/process_mode = 1
+config/texture = ExtResource( 7 )
+params/direction = 0.0
+params/spread = 10.0
+params/linear_velocity = 150.0
+params/spin_velocity = 0.0
+params/orbit_velocity = 0.1
+params/gravity_direction = 0.0
+params/gravity_strength = 100.0
+params/radial_accel = 0.0
+params/tangential_accel = 0.0
+params/damping = 0.0
+params/initial_angle = 0.0
+params/initial_size = 1.0
+params/final_size = 2.0
+params/hue_variation = 0.0
+params/anim_speed_scale = 1.0
+params/anim_initial_pos = 0.0
+randomness/gravity_strength = 1.0
+color/color = Color( 0.898438, 0, 0, 1 )
+
+[node name="particles2" type="Particles2D" parent="tabs/tab_menu/back_particles"]
+
+transform/pos = Vector2( -21.2056, 12.1277 )
+transform/rot = 66.0229
+config/amount = 100
+config/lifetime = 3.2
+config/process_mode = 1
+config/texture = ExtResource( 7 )
+params/direction = 0.0
+params/spread = 10.0
+params/linear_velocity = 150.0
+params/spin_velocity = 0.0
+params/orbit_velocity = 0.1
+params/gravity_direction = 0.0
+params/gravity_strength = 100.0
+params/radial_accel = 0.0
+params/tangential_accel = 0.0
+params/damping = 0.0
+params/initial_angle = 0.0
+params/initial_size = 1.0
+params/final_size = 1.0
+params/hue_variation = 0.0
+params/anim_speed_scale = 1.0
+params/anim_initial_pos = 0.0
+randomness/gravity_strength = 1.0
+color/color = Color( 0.898438, 0, 0, 1 )
+
+[node name="game_name" type="Label" parent="tabs/tab_menu"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 23.0
+margin/top = 171.0
+margin/right = 519.0
+margin/bottom = 316.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 6
+custom_constants/shadow_offset_y = 0
+text = "DARK +
+PRAYERS"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+script/script = ExtResource( 9 )
+final_text = "DARK +
+PRAYERS"
+typing_speed = 0.25
+
+[node name="start_but" type="Node2D" parent="tabs/tab_menu"]
+
+transform/pos = Vector2( 30, 484 )
+script/script = ExtResource( 10 )
+type = 0
+
+[node name="bg" type="Sprite" parent="tabs/tab_menu/start_but"]
+
+editor/display_folded = true
+transform/scale = Vector2( 8.59384, 4.12168 )
+texture = ExtResource( 5 )
+centered = false
+modulate = Color( 0.695313, 0, 0, 1 )
+region = true
+region_rect = Rect2( 0, 0, 24, 24 )
+
+[node name="bg1" type="Sprite" parent="tabs/tab_menu/start_but/bg"]
+
+transform/pos = Vector2( 0.861335, 1.63649 )
+transform/scale = Vector2( 0.932036, 0.848095 )
+texture = ExtResource( 5 )
+centered = false
+modulate = Color( 0, 0, 0, 1 )
+region = true
+region_rect = Rect2( 0, 0, 24, 24 )
+
+[node name="text" type="Label" parent="tabs/tab_menu/start_but"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 4.0
+margin/top = 9.0
+margin/right = 202.0
+margin/bottom = 96.0
+custom_fonts/font = SubResource( 3 )
+text = "START"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="buttons" type="Node2D" parent="tabs/tab_menu"]
+
+transform/pos = Vector2( 40, 534 )
+
+[node name="options_but" type="Node2D" parent="tabs/tab_menu"]
+
+transform/pos = Vector2( 31, 594 )
+script/script = ExtResource( 10 )
+type = 1
+
+[node name="bg" type="Sprite" parent="tabs/tab_menu/options_but"]
+
+transform/scale = Vector2( 15.1537, 2.91812 )
+texture = ExtResource( 5 )
+centered = false
+modulate = Color( 0.695313, 0, 0, 1 )
+region = true
+region_rect = Rect2( 0, 0, 24, 24 )
+
+[node name="bg1" type="Sprite" parent="tabs/tab_menu/options_but/bg"]
+
+transform/pos = Vector2( 0.34299, 1.63649 )
+transform/scale = Vector2( 0.968013, 0.848095 )
+texture = ExtResource( 5 )
+centered = false
+modulate = Color( 0, 0, 0, 1 )
+region = true
+region_rect = Rect2( 0, 0, 24, 24 )
+
+[node name="text" type="Label" parent="tabs/tab_menu/options_but"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 3.0
+margin/top = 11.0
+margin/right = 373.0
+margin/bottom = 65.0
+custom_fonts/font = SubResource( 3 )
+text = "options"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="text" type="Label" parent="tabs/tab_menu"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 33.0
+margin/top = 694.0
+margin/right = 392.0
+margin/bottom = 710.0
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0.226563, 0.226563, 0.226563, 1 )
+text = "sindicato videogames"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="text1" type="Label" parent="tabs/tab_menu"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 33.0
+margin/top = 674.0
+margin/right = 392.0
+margin/bottom = 690.0
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0.226563, 0.226563, 0.226563, 1 )
+text = "Vlad Lugovskoy 2020"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="tab_options" type="Node2D" parent="tabs"]
+
+editor/display_folded = true
+visibility/visible = false
+
+[node name="bg" type="Sprite" parent="tabs/tab_options"]
+
+transform/pos = Vector2( -10.7515, -15.2545 )
+transform/scale = Vector2( 18.7428, 30.9789 )
+texture = ExtResource( 5 )
+centered = false
+modulate = Color( 0, 0, 0, 1 )
+region = true
+region_rect = Rect2( 0, 0, 24, 24 )
+
+[node name="back_but" type="Node2D" parent="tabs/tab_options"]
+
+editor/display_folded = true
+transform/pos = Vector2( 113, 585 )
+script/script = ExtResource( 10 )
+type = 6
+
+[node name="bg" type="Sprite" parent="tabs/tab_options/back_but"]
+
+editor/display_folded = true
+transform/scale = Vector2( 7.94926, 4.12168 )
+texture = ExtResource( 5 )
+centered = false
+modulate = Color( 0.695313, 0, 0, 1 )
+region = true
+region_rect = Rect2( 0, 0, 24, 24 )
+
+[node name="bg1" type="Sprite" parent="tabs/tab_options/back_but/bg"]
+
+transform/pos = Vector2( 0.861335, 1.63649 )
+transform/scale = Vector2( 0.932036, 0.848095 )
+texture = ExtResource( 5 )
+centered = false
+modulate = Color( 0, 0, 0, 1 )
+region = true
+region_rect = Rect2( 0, 0, 24, 24 )
+
+[node name="text" type="Label" parent="tabs/tab_options/back_but"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 16.0
+margin/top = 8.0
+margin/right = 178.0
+margin/bottom = 95.0
+custom_fonts/font = SubResource( 3 )
+text = "BACK"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="save_but" type="Node2D" parent="tabs/tab_options"]
+
+visibility/visible = false
+transform/pos = Vector2( 220, 585 )
+script/script = ExtResource( 10 )
+type = 2
+
+[node name="bg" type="Sprite" parent="tabs/tab_options/save_but"]
+
+editor/display_folded = true
+transform/scale = Vector2( 7.94926, 4.12168 )
+texture = ExtResource( 5 )
+centered = false
+modulate = Color( 0.695313, 0, 0, 1 )
+region = true
+region_rect = Rect2( 0, 0, 24, 24 )
+
+[node name="bg1" type="Sprite" parent="tabs/tab_options/save_but/bg"]
+
+transform/pos = Vector2( 0.861335, 1.63649 )
+transform/scale = Vector2( 0.932036, 0.848095 )
+texture = ExtResource( 5 )
+centered = false
+modulate = Color( 0, 0, 0, 1 )
+region = true
+region_rect = Rect2( 0, 0, 24, 24 )
+
+[node name="text" type="Label" parent="tabs/tab_options/save_but"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 16.0
+margin/top = 8.0
+margin/right = 178.0
+margin/bottom = 95.0
+custom_fonts/font = SubResource( 3 )
+text = "SAVE"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="header" type="Label" parent="tabs/tab_options"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 73.0
+margin/top = 39.0
+margin/right = 339.0
+margin/bottom = 90.0
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 1, 0.277344, 0.988708, 1 )
+text = "OPTIONS"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="checkboxes" type="Node2D" parent="tabs/tab_options"]
+
+transform/pos = Vector2( -10, 60 )
+
+[node name="check_vsync" type="Node2D" parent="tabs/tab_options/checkboxes"]
+
+editor/display_folded = true
+transform/pos = Vector2( 42.0088, 72.0918 )
+transform/scale = Vector2( 0.736717, 0.736717 )
+script/script = ExtResource( 12 )
+type = 0
+
+[node name="bg" type="Sprite" parent="tabs/tab_options/checkboxes/check_vsync"]
+
+transform/scale = Vector2( 3.23157, 2.99463 )
+texture = ExtResource( 5 )
+centered = false
+modulate = Color( 0.0863037, 0.261993, 0.789063, 1 )
+region = true
+region_rect = Rect2( 50, 0, 25, 25 )
+
+[node name="bg1" type="Sprite" parent="tabs/tab_options/checkboxes/check_vsync/bg"]
+
+transform/pos = Vector2( 2.28932, 2.48657 )
+transform/scale = Vector2( 0.812939, 0.786741 )
+texture = ExtResource( 5 )
+centered = false
+modulate = Color( 0, 0, 0, 1 )
+region = true
+region_rect = Rect2( 50, 0, 25, 25 )
+script/script = ExtResource( 13 )
+connected_node_path = null
+is_sine_enable = true
+sine_range = Vector2( 1, 1 )
+sine_angle_increase_time = 0.03
+
+[node name="text" type="Label" parent="tabs/tab_options/checkboxes/check_vsync"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 105.0
+margin/top = 10.0
+margin/right = 295.0
+margin/bottom = 61.0
+custom_fonts/font = SubResource( 5 )
+text = "VSync"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="check_music" type="Node2D" parent="tabs/tab_options/checkboxes"]
+
+editor/display_folded = true
+transform/pos = Vector2( 42.0088, 142.092 )
+transform/scale = Vector2( 0.736717, 0.736717 )
+script/script = ExtResource( 12 )
+type = 1
+
+[node name="bg" type="Sprite" parent="tabs/tab_options/checkboxes/check_music"]
+
+editor/display_folded = true
+transform/scale = Vector2( 3.23157, 2.99463 )
+texture = ExtResource( 5 )
+centered = false
+modulate = Color( 0.0863037, 0.261993, 0.789063, 1 )
+region = true
+region_rect = Rect2( 50, 0, 25, 25 )
+
+[node name="bg1" type="Sprite" parent="tabs/tab_options/checkboxes/check_music/bg"]
+
+transform/pos = Vector2( 2.28932, 2.48657 )
+transform/scale = Vector2( 0.812939, 0.786741 )
+texture = ExtResource( 5 )
+centered = false
+modulate = Color( 0, 0, 0, 1 )
+region = true
+region_rect = Rect2( 50, 0, 25, 25 )
+script/script = ExtResource( 13 )
+connected_node_path = null
+is_sine_enable = true
+sine_range = Vector2( 1, 1 )
+sine_angle_increase_time = 0.03
+
+[node name="text" type="Label" parent="tabs/tab_options/checkboxes/check_music"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 105.0
+margin/top = 13.0
+margin/right = 295.0
+margin/bottom = 64.0
+custom_fonts/font = SubResource( 5 )
+text = "Music"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="check_sound" type="Node2D" parent="tabs/tab_options/checkboxes"]
+
+editor/display_folded = true
+transform/pos = Vector2( 42.0088, 212.092 )
+transform/scale = Vector2( 0.736717, 0.736717 )
+script/script = ExtResource( 12 )
+type = 2
+
+[node name="bg" type="Sprite" parent="tabs/tab_options/checkboxes/check_sound"]
+
+editor/display_folded = true
+transform/scale = Vector2( 3.23157, 2.99463 )
+texture = ExtResource( 5 )
+centered = false
+modulate = Color( 0.0863037, 0.261993, 0.789063, 1 )
+region = true
+region_rect = Rect2( 50, 0, 25, 25 )
+
+[node name="bg1" type="Sprite" parent="tabs/tab_options/checkboxes/check_sound/bg"]
+
+transform/pos = Vector2( 2.28932, 2.48657 )
+transform/scale = Vector2( 0.812939, 0.786741 )
+texture = ExtResource( 5 )
+centered = false
+modulate = Color( 0, 0, 0, 1 )
+region = true
+region_rect = Rect2( 50, 0, 25, 25 )
+script/script = ExtResource( 13 )
+connected_node_path = null
+is_sine_enable = true
+sine_range = Vector2( 1, 1 )
+sine_angle_increase_time = 0.03
+
+[node name="text" type="Label" parent="tabs/tab_options/checkboxes/check_sound"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 105.0
+margin/top = 13.0
+margin/right = 295.0
+margin/bottom = 64.0
+custom_fonts/font = SubResource( 5 )
+text = "Sounds"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="check_blood" type="Node2D" parent="tabs/tab_options/checkboxes"]
+
+transform/pos = Vector2( 42.0088, 282.092 )
+transform/scale = Vector2( 0.736717, 0.736717 )
+script/script = ExtResource( 12 )
+type = 3
+
+[node name="bg" type="Sprite" parent="tabs/tab_options/checkboxes/check_blood"]
+
+editor/display_folded = true
+transform/scale = Vector2( 3.23157, 2.99463 )
+texture = ExtResource( 5 )
+centered = false
+modulate = Color( 0.0863037, 0.261993, 0.789063, 1 )
+region = true
+region_rect = Rect2( 50, 0, 25, 25 )
+
+[node name="bg1" type="Sprite" parent="tabs/tab_options/checkboxes/check_blood/bg"]
+
+transform/pos = Vector2( 2.28932, 2.48657 )
+transform/scale = Vector2( 0.812939, 0.786741 )
+texture = ExtResource( 5 )
+centered = false
+modulate = Color( 0, 0, 0, 1 )
+region = true
+region_rect = Rect2( 50, 0, 25, 25 )
+script/script = ExtResource( 13 )
+connected_node_path = null
+is_sine_enable = true
+sine_range = Vector2( 1, 1 )
+sine_angle_increase_time = 0.03
+
+[node name="text" type="Label" parent="tabs/tab_options/checkboxes/check_blood"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 105.0
+margin/top = 13.0
+margin/right = 295.0
+margin/bottom = 64.0
+custom_fonts/font = SubResource( 5 )
+text = "Blood"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="check_high_effects" type="Node2D" parent="tabs/tab_options/checkboxes"]
+
+editor/display_folded = true
+transform/pos = Vector2( 42.0088, 352.092 )
+transform/scale = Vector2( 0.736717, 0.736717 )
+script/script = ExtResource( 12 )
+type = 4
+
+[node name="bg" type="Sprite" parent="tabs/tab_options/checkboxes/check_high_effects"]
+
+transform/scale = Vector2( 3.23157, 2.99463 )
+texture = ExtResource( 5 )
+centered = false
+modulate = Color( 0.0863037, 0.261993, 0.789063, 1 )
+region = true
+region_rect = Rect2( 50, 0, 25, 25 )
+
+[node name="bg1" type="Sprite" parent="tabs/tab_options/checkboxes/check_high_effects/bg"]
+
+transform/pos = Vector2( 2.28932, 2.48657 )
+transform/scale = Vector2( 0.812939, 0.786741 )
+texture = ExtResource( 5 )
+centered = false
+modulate = Color( 0, 0, 0, 1 )
+region = true
+region_rect = Rect2( 50, 0, 25, 25 )
+script/script = ExtResource( 13 )
+connected_node_path = null
+is_sine_enable = true
+sine_range = Vector2( 1, 1 )
+sine_angle_increase_time = 0.03
+
+[node name="text" type="Label" parent="tabs/tab_options/checkboxes/check_high_effects"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 105.0
+margin/top = 15.0
+margin/right = 485.0
+margin/bottom = 66.0
+custom_fonts/font = SubResource( 5 )
+text = "High Effects"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="check_tutorial_tips" type="Node2D" parent="tabs/tab_options/checkboxes"]
+
+transform/pos = Vector2( 42.0088, 422.092 )
+transform/scale = Vector2( 0.736717, 0.736717 )
+script/script = ExtResource( 12 )
+type = 5
+
+[node name="bg" type="Sprite" parent="tabs/tab_options/checkboxes/check_tutorial_tips"]
+
+editor/display_folded = true
+transform/scale = Vector2( 3.23157, 2.99463 )
+texture = ExtResource( 5 )
+centered = false
+modulate = Color( 0.0863037, 0.261993, 0.789063, 1 )
+region = true
+region_rect = Rect2( 50, 0, 25, 25 )
+
+[node name="bg1" type="Sprite" parent="tabs/tab_options/checkboxes/check_tutorial_tips/bg"]
+
+transform/pos = Vector2( 2.28932, 2.48657 )
+transform/scale = Vector2( 0.812939, 0.786741 )
+texture = ExtResource( 5 )
+centered = false
+modulate = Color( 0, 0, 0, 1 )
+region = true
+region_rect = Rect2( 50, 0, 25, 25 )
+script/script = ExtResource( 13 )
+connected_node_path = null
+is_sine_enable = true
+sine_range = Vector2( 1, 1 )
+sine_angle_increase_time = 0.03
+
+[node name="text" type="Label" parent="tabs/tab_options/checkboxes/check_tutorial_tips"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 105.0
+margin/top = 14.0
+margin/right = 599.0
+margin/bottom = 65.0
+custom_fonts/font = SubResource( 5 )
+text = "Tutorial Tips"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="tab_char_select" type="Node2D" parent="tabs"]
+
+visibility/visible = false
+
+[node name="bg" type="Sprite" parent="tabs/tab_char_select"]
+
+transform/pos = Vector2( -9.12247, -14.4399 )
+transform/scale = Vector2( 18.7428, 30.9789 )
+texture = ExtResource( 5 )
+centered = false
+modulate = Color( 0, 0, 0, 1 )
+region = true
+region_rect = Rect2( 0, 0, 24, 24 )
+
+[node name="select_role" type="Label" parent="tabs/tab_char_select"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 24.0
+margin/top = 18.0
+margin/right = 408.0
+margin/bottom = 69.0
+custom_fonts/font = SubResource( 6 )
+custom_colors/font_color = Color( 1, 0.868286, 0.351563, 1 )
+text = "SELECT CHARACTER"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="thief" type="Node2D" parent="tabs/tab_char_select"]
+
+[node name="char" type="Sprite" parent="tabs/tab_char_select/thief"]
+
+material/material = ExtResource( 14 )
+transform/pos = Vector2( 290.13, 277.981 )
+transform/scale = Vector2( 2.99959, 2.99959 )
+texture = ExtResource( 15 )
+script/script = ExtResource( 13 )
+connected_node_path = null
+is_sine_enable = true
+sine_range = Vector2( 1, 10 )
+sine_angle_increase_time = 0.08
+
+[node name="char_name" type="Label" parent="tabs/tab_char_select/thief"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 90.0
+margin/top = 110.0
+margin/right = 306.0
+margin/bottom = 161.0
+custom_fonts/font = SubResource( 6 )
+custom_colors/font_color_shadow = Color( 0.917084, 1, 0.183594, 1 )
+custom_constants/shadow_as_outline = 0
+text = "THIEF"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="sub_bg" type="Sprite" parent="tabs/tab_char_select"]
+
+transform/pos = Vector2( -9.12247, 361.596 )
+transform/scale = Vector2( 18.7428, 15.3107 )
+texture = ExtResource( 5 )
+centered = false
+modulate = Color( 0, 0, 0, 1 )
+region = true
+region_rect = Rect2( 0, 0, 24, 24 )
+
+[node name="char_desc" type="Label" parent="tabs/tab_char_select"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 20.0
+margin/top = 398.0
+margin/right = 421.0
+margin/bottom = 688.0
+custom_fonts/font = SubResource( 7 )
+custom_colors/font_color = Color( 0.888672, 0.109375, 1, 1 )
+text = "the devil took the thief's soul. with the help of knives and the power of his faith, he intends to take it back."
+autowrap = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+script/script = ExtResource( 9 )
+final_text = "the devil took the thief's soul. with the help of knives and the power of his faith, he intends to take it back."
+typing_speed = 0.02
+
+[node name="start_but" type="Node2D" parent="tabs/tab_char_select"]
+
+transform/pos = Vector2( 11, 595 )
+script/script = ExtResource( 10 )
+type = 3
+
+[node name="bg" type="Sprite" parent="tabs/tab_char_select/start_but"]
+
+editor/display_folded = true
+transform/scale = Vector2( 10.6386, 4.12168 )
+texture = ExtResource( 5 )
+centered = false
+modulate = Color( 0.0859375, 1, 0.378723, 1 )
+region = true
+region_rect = Rect2( 0, 0, 24, 24 )
+
+[node name="bg1" type="Sprite" parent="tabs/tab_char_select/start_but/bg"]
+
+transform/pos = Vector2( 0.861335, 1.63649 )
+transform/scale = Vector2( 0.932036, 0.848095 )
+texture = ExtResource( 5 )
+centered = false
+modulate = Color( 0, 0, 0, 1 )
+region = true
+region_rect = Rect2( 0, 0, 24, 24 )
+
+[node name="text" type="Label" parent="tabs/tab_char_select/start_but"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 16.0
+margin/top = 8.0
+margin/right = 236.0
+margin/bottom = 95.0
+custom_fonts/font = SubResource( 3 )
+text = "START"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="back_but" type="Node2D" parent="tabs/tab_char_select"]
+
+transform/pos = Vector2( 265, 594 )
+script/script = ExtResource( 10 )
+type = 6
+
+[node name="bg" type="Sprite" parent="tabs/tab_char_select/back_but"]
+
+transform/scale = Vector2( 6.23557, 4.17329 )
+texture = ExtResource( 5 )
+centered = false
+modulate = Color( 0.695313, 0, 0, 1 )
+region = true
+region_rect = Rect2( 0, 0, 24, 24 )
+
+[node name="bg1" type="Sprite" parent="tabs/tab_char_select/back_but/bg"]
+
+transform/pos = Vector2( 0.861335, 1.63649 )
+transform/scale = Vector2( 0.932036, 0.848095 )
+texture = ExtResource( 5 )
+centered = false
+modulate = Color( 0, 0, 0, 1 )
+region = true
+region_rect = Rect2( 0, 0, 24, 24 )
+
+[node name="text" type="Label" parent="tabs/tab_char_select/back_but"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 16.0
+margin/top = 9.0
+margin/right = 140.0
+margin/bottom = 96.0
+custom_fonts/font = SubResource( 3 )
+text = "BACK"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="tab_tutorial" type="Node2D" parent="tabs"]
+
+visibility/visible = false
+
+[node name="bg" type="Sprite" parent="tabs/tab_tutorial"]
+
+transform/pos = Vector2( -10.7515, -15.2545 )
+transform/scale = Vector2( 18.7428, 30.9789 )
+texture = ExtResource( 5 )
+centered = false
+modulate = Color( 0, 0, 0, 1 )
+region = true
+region_rect = Rect2( 0, 0, 24, 24 )
+
+[node name="arrows" type="Node2D" parent="tabs/tab_tutorial"]
+
+transform/pos = Vector2( 100, -100 )
+
+[node name="key_tex" type="Sprite" parent="tabs/tab_tutorial/arrows"]
+
+transform/pos = Vector2( 78, 234.545 )
+transform/scale = Vector2( 2.40994, 2.99463 )
+texture = ExtResource( 5 )
+centered = false
+modulate = Color( 0.605621, 0.722735, 0.738281, 1 )
+region = true
+region_rect = Rect2( 75, 0, 25, 25 )
+script/script = ExtResource( 13 )
+connected_node_path = null
+is_sine_enable = true
+sine_range = Vector2( 1, 1 )
+sine_angle_increase_time = 0.05
+
+[node name="key_tex1" type="Sprite" parent="tabs/tab_tutorial/arrows/key_tex"]
+
+transform/pos = Vector2( 4.87822, 0.216441 )
+transform/scale = Vector2( 0.735296, 0.735296 )
+texture = ExtResource( 5 )
+centered = false
+region = true
+region_rect = Rect2( 100, 0, 25, 25 )
+
+[node name="key_tex1" type="Sprite" parent="tabs/tab_tutorial/arrows"]
+
+transform/pos = Vector2( 8, 234.545 )
+transform/scale = Vector2( 2.40994, 2.99463 )
+texture = ExtResource( 5 )
+centered = false
+modulate = Color( 0.605621, 0.722735, 0.738281, 1 )
+region = true
+region_rect = Rect2( 75, 0, 25, 25 )
+script/script = ExtResource( 13 )
+connected_node_path = null
+is_sine_enable = true
+sine_range = Vector2( 1, 1 )
+sine_angle_increase_time = 0.05
+
+[node name="key_tex1" type="Sprite" parent="tabs/tab_tutorial/arrows/key_tex1"]
+
+transform/pos = Vector2( 21.8911, 2.22003 )
+transform/rot = -90.0
+transform/scale = Vector2( 0.735296, 0.735296 )
+texture = ExtResource( 5 )
+centered = false
+region = true
+region_rect = Rect2( 100, 0, 25, 25 )
+
+[node name="key_tex2" type="Sprite" parent="tabs/tab_tutorial/arrows"]
+
+transform/pos = Vector2( -62, 234.545 )
+transform/scale = Vector2( 2.40994, 2.99463 )
+texture = ExtResource( 5 )
+centered = false
+modulate = Color( 0.605621, 0.722735, 0.738281, 1 )
+region = true
+region_rect = Rect2( 75, 0, 25, 25 )
+script/script = ExtResource( 13 )
+connected_node_path = null
+is_sine_enable = true
+sine_range = Vector2( 1, 1 )
+sine_angle_increase_time = 0.05
+
+[node name="key_tex1" type="Sprite" parent="tabs/tab_tutorial/arrows/key_tex2"]
+
+transform/pos = Vector2( 1.55864, 0.216441 )
+transform/scale = Vector2( 0.735296, 0.735296 )
+texture = ExtResource( 5 )
+centered = false
+flip_h = true
+region = true
+region_rect = Rect2( 100, 0, 25, 25 )
+
+[node name="key_tex3" type="Sprite" parent="tabs/tab_tutorial/arrows"]
+
+transform/pos = Vector2( 8, 154.545 )
+transform/scale = Vector2( 2.40994, 2.99463 )
+texture = ExtResource( 5 )
+centered = false
+modulate = Color( 0.605621, 0.722735, 0.738281, 1 )
+region = true
+region_rect = Rect2( 75, 0, 25, 25 )
+script/script = ExtResource( 13 )
+connected_node_path = null
+is_sine_enable = true
+sine_range = Vector2( 1, 1 )
+sine_angle_increase_time = 0.05
+
+[node name="key_tex1" type="Sprite" parent="tabs/tab_tutorial/arrows/key_tex3"]
+
+transform/pos = Vector2( 22.306, 0.216441 )
+transform/rot = -90.0
+transform/scale = Vector2( 0.735296, 0.735296 )
+texture = ExtResource( 5 )
+centered = false
+flip_h = true
+region = true
+region_rect = Rect2( 100, 0, 25, 25 )
+
+[node name="tip" type="Label" parent="tabs/tab_tutorial/arrows"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 162.0
+margin/top = 231.0
+margin/right = 546.0
+margin/bottom = 344.0
+custom_fonts/font = SubResource( 6 )
+custom_colors/font_color = Color( 0.980469, 0.967602, 0.157028, 1 )
+text = "
+MOVE"
+autowrap = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="key_z" type="Node2D" parent="tabs/tab_tutorial"]
+
+transform/pos = Vector2( -20, 0 )
+
+[node name="key_tex" type="Sprite" parent="tabs/tab_tutorial/key_z"]
+
+transform/pos = Vector2( 78, 234.545 )
+transform/scale = Vector2( 2.40994, 2.99463 )
+texture = ExtResource( 5 )
+centered = false
+modulate = Color( 0.605621, 0.722735, 0.738281, 1 )
+region = true
+region_rect = Rect2( 75, 0, 25, 25 )
+script/script = ExtResource( 13 )
+connected_node_path = null
+is_sine_enable = true
+sine_range = Vector2( 1, 1 )
+sine_angle_increase_time = 0.05
+
+[node name="key_label" type="Label" parent="tabs/tab_tutorial/key_z"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 97.0
+margin/top = 229.0
+margin/right = 124.0
+margin/bottom = 295.0
+custom_fonts/font = SubResource( 6 )
+custom_colors/font_color = Color( 0.941406, 0.25, 1, 1 )
+text = "
+Z"
+autowrap = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="tip" type="Label" parent="tabs/tab_tutorial/key_z"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 162.0
+margin/top = 231.0
+margin/right = 546.0
+margin/bottom = 344.0
+custom_fonts/font = SubResource( 6 )
+custom_colors/font_color = Color( 0.980469, 0.967602, 0.157028, 1 )
+text = "
+ATTACK"
+autowrap = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="key_x" type="Node2D" parent="tabs/tab_tutorial"]
+
+transform/pos = Vector2( -30, 89 )
+
+[node name="key_tex" type="Sprite" parent="tabs/tab_tutorial/key_x"]
+
+transform/pos = Vector2( 88, 234.545 )
+transform/scale = Vector2( 2.40994, 2.99463 )
+texture = ExtResource( 5 )
+centered = false
+modulate = Color( 0.605621, 0.722735, 0.738281, 1 )
+region = true
+region_rect = Rect2( 75, 0, 25, 25 )
+script/script = ExtResource( 13 )
+connected_node_path = null
+is_sine_enable = true
+sine_range = Vector2( 1, 1 )
+sine_angle_increase_time = 0.05
+
+[node name="key_label" type="Label" parent="tabs/tab_tutorial/key_x"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 109.0
+margin/top = 229.0
+margin/right = 136.0
+margin/bottom = 342.0
+custom_fonts/font = SubResource( 6 )
+custom_colors/font_color = Color( 0.941406, 0.25, 1, 1 )
+text = "
+X"
+autowrap = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="tip" type="Label" parent="tabs/tab_tutorial/key_x"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 172.0
+margin/top = 233.0
+margin/right = 556.0
+margin/bottom = 346.0
+custom_fonts/font = SubResource( 6 )
+custom_colors/font_color = Color( 0.980469, 0.967602, 0.157028, 1 )
+text = "
+USE CROSS"
+autowrap = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="start_but" type="Node2D" parent="tabs/tab_tutorial"]
+
+transform/pos = Vector2( 50, 465 )
+script/script = ExtResource( 10 )
+type = 4
+
+[node name="bg" type="Sprite" parent="tabs/tab_tutorial/start_but"]
+
+editor/display_folded = true
+transform/scale = Vector2( 13.5098, 4.12168 )
+texture = ExtResource( 5 )
+centered = false
+modulate = Color( 0.695313, 0, 0, 1 )
+region = true
+region_rect = Rect2( 0, 0, 24, 24 )
+
+[node name="bg1" type="Sprite" parent="tabs/tab_tutorial/start_but/bg"]
+
+transform/pos = Vector2( 0.861335, 1.63649 )
+transform/scale = Vector2( 0.932036, 0.848095 )
+texture = ExtResource( 5 )
+centered = false
+modulate = Color( 0, 0, 0, 1 )
+region = true
+region_rect = Rect2( 0, 0, 24, 24 )
+
+[node name="text" type="Label" parent="tabs/tab_tutorial/start_but"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 16.0
+margin/top = 8.0
+margin/right = 311.0
+margin/bottom = 95.0
+custom_fonts/font = SubResource( 3 )
+text = "G O"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="dont_show_again_checkbox" type="Node2D" parent="tabs/tab_tutorial"]
+
+transform/pos = Vector2( 101.14, 597.525 )
+transform/scale = Vector2( 0.736717, 0.736717 )
+script/script = ExtResource( 12 )
+type = 5
+
+[node name="bg" type="Sprite" parent="tabs/tab_tutorial/dont_show_again_checkbox"]
+
+transform/scale = Vector2( 3.23157, 2.99463 )
+texture = ExtResource( 5 )
+centered = false
+modulate = Color( 0.0863037, 0.261993, 0.789063, 1 )
+region = true
+region_rect = Rect2( 50, 0, 25, 25 )
+
+[node name="bg1" type="Sprite" parent="tabs/tab_tutorial/dont_show_again_checkbox/bg"]
+
+transform/pos = Vector2( 2.28932, 2.48657 )
+transform/scale = Vector2( 0.812939, 0.786741 )
+texture = ExtResource( 5 )
+centered = false
+modulate = Color( 0, 0, 0, 1 )
+region = true
+region_rect = Rect2( 50, 0, 25, 25 )
+script/script = ExtResource( 13 )
+connected_node_path = null
+is_sine_enable = true
+sine_range = Vector2( 1, 1 )
+sine_angle_increase_time = 0.03
+
+[node name="text" type="Label" parent="tabs/tab_tutorial/dont_show_again_checkbox"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 102.0
+margin/top = -22.0
+margin/right = 330.0
+margin/bottom = 88.0
+custom_fonts/font = SubResource( 6 )
+custom_colors/font_color = Color( 1, 0.868286, 0.351563, 1 )
+text = "
+Show tutorial
+tips"
+autowrap = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+

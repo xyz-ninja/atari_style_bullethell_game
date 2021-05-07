@@ -1,0 +1,2163 @@
+[gd_scene load_steps=93 format=1]
+
+[ext_resource path="res://scripts/game.gd" type="Script" id=1]
+[ext_resource path="res://scripts/cam.gd" type="Script" id=2]
+[ext_resource path="res://scripts/sound.gd" type="Script" id=3]
+[ext_resource path="res://sounds/char.wav" type="Sample" id=4]
+[ext_resource path="res://sounds/entering_level.wav" type="Sample" id=5]
+[ext_resource path="res://sounds/level_reduce.wav" type="Sample" id=6]
+[ext_resource path="res://sounds/level_up.wav" type="Sample" id=7]
+[ext_resource path="res://sounds/mortis.wav" type="Sample" id=8]
+[ext_resource path="res://sounds/unit_destroyed.wav" type="Sample" id=9]
+[ext_resource path="res://sounds/boss_destroyed.wav" type="Sample" id=10]
+[ext_resource path="res://sounds/dash.wav" type="Sample" id=11]
+[ext_resource path="res://sounds/enemy_proj_destroyed.wav" type="Sample" id=12]
+[ext_resource path="res://sounds/boss_appear.wav" type="Sample" id=13]
+[ext_resource path="res://sounds/enemies_appear.wav" type="Sample" id=14]
+[ext_resource path="res://sounds/walk.wav" type="Sample" id=15]
+[ext_resource path="res://sounds/item_pickup.wav" type="Sample" id=16]
+[ext_resource path="res://sounds/obj_hit.wav" type="Sample" id=17]
+[ext_resource path="res://sounds/skull_pickup.wav" type="Sample" id=18]
+[ext_resource path="res://sounds/faith.wav" type="Sample" id=19]
+[ext_resource path="res://sounds/faith_max.wav" type="Sample" id=20]
+[ext_resource path="res://sounds/faith_up.wav" type="Sample" id=21]
+[ext_resource path="res://sounds/lvl10_shoot.wav" type="Sample" id=22]
+[ext_resource path="res://sounds/lvl1_shoot.wav" type="Sample" id=23]
+[ext_resource path="res://sounds/lvl2_shoot.wav" type="Sample" id=24]
+[ext_resource path="res://sounds/lvl3_shoot.wav" type="Sample" id=25]
+[ext_resource path="res://sounds/lvl4_shoot.wav" type="Sample" id=26]
+[ext_resource path="res://sounds/lvl5_shoot.wav" type="Sample" id=27]
+[ext_resource path="res://sounds/lvl6_shoot.wav" type="Sample" id=28]
+[ext_resource path="res://sounds/lvl7_shoot.wav" type="Sample" id=29]
+[ext_resource path="res://sounds/lvl8_shoot.wav" type="Sample" id=30]
+[ext_resource path="res://sounds/lvl9_shoot.wav" type="Sample" id=31]
+[ext_resource path="res://sounds/enemy_shoot.wav" type="Sample" id=32]
+[ext_resource path="res://sounds/unit_hit.wav" type="Sample" id=33]
+[ext_resource path="res://sounds/button_click.wav" type="Sample" id=34]
+[ext_resource path="res://sounds/button_enter.wav" type="Sample" id=35]
+[ext_resource path="res://sounds/blood_splash.wav" type="Sample" id=36]
+[ext_resource path="res://scripts/game_floor.gd" type="Script" id=37]
+[ext_resource path="res://sprites/textures.png" type="Texture" id=38]
+[ext_resource path="res://shaders/white_sine_anim_SHADER.tres" type="Shader" id=39]
+[ext_resource path="res://sprites/gui_wall.png" type="Texture" id=40]
+[ext_resource path="res://sprites/floors.png" type="Texture" id=41]
+[ext_resource path="res://shaders/intro_logo.tres" type="CanvasItemMaterial" id=42]
+[ext_resource path="res://sprites/lvl5_bg.png" type="Texture" id=43]
+[ext_resource path="res://units/player.tscn" type="PackedScene" id=44]
+[ext_resource path="res://scripts/gui.gd" type="Script" id=45]
+[ext_resource path="res://fonts/pixel4.ttf" type="DynamicFontData" id=46]
+[ext_resource path="res://fonts/Pokemon_GB.ttf" type="DynamicFontData" id=47]
+[ext_resource path="res://scripts/progressbar.gd" type="Script" id=48]
+[ext_resource path="res://scripts/icons_progressbar.gd" type="Script" id=49]
+[ext_resource path="res://scripts/gradual_text.gd" type="Script" id=50]
+[ext_resource path="res://scripts/gui_char_portrait.gd" type="Script" id=51]
+[ext_resource path="res://sprites/characters_portrets.png" type="Texture" id=52]
+[ext_resource path="res://sprites/character_portraits_borders.png" type="Texture" id=53]
+[ext_resource path="res://scripts/gui_popup.gd" type="Script" id=54]
+[ext_resource path="res://sprites/faith_events.png" type="Texture" id=55]
+[ext_resource path="res://sprites/boss_events.png" type="Texture" id=56]
+[ext_resource path="res://sprites/other_events.png" type="Texture" id=57]
+[ext_resource path="res://scripts/gui_utils/red_button.gd" type="Script" id=58]
+
+[sub_resource type="SampleLibrary" id=1]
+
+samples/char = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 4 )
+}
+samples/entering_level = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 1,
+"sample": ExtResource( 5 )
+}
+samples/level_reduce = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 6 )
+}
+samples/level_up = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 7 )
+}
+samples/mortis = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 8 )
+}
+samples/unit_destroyed = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 9 )
+}
+
+[sub_resource type="SampleLibrary" id=2]
+
+samples/boss_destroyed = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 10 )
+}
+samples/dash = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 11 )
+}
+samples/enemy_proj_destroyed = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 12 )
+}
+
+[sub_resource type="SampleLibrary" id=3]
+
+samples/boss_appear = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 13 )
+}
+samples/enemies_appear = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 14 )
+}
+
+[sub_resource type="SampleLibrary" id=4]
+
+samples/walk = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 15 )
+}
+
+[sub_resource type="SampleLibrary" id=5]
+
+samples/item_pickup = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 16 )
+}
+samples/obj_hit = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 17 )
+}
+samples/skull_pickup = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 18 )
+}
+
+[sub_resource type="SampleLibrary" id=6]
+
+samples/faith = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 19 )
+}
+samples/faith_max = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 20 )
+}
+samples/faith_up = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 21 )
+}
+samples/lvl10_shoot = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 22 )
+}
+samples/lvl1_shoot = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 23 )
+}
+samples/lvl2_shoot = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 24 )
+}
+samples/lvl3_shoot = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 25 )
+}
+samples/lvl4_shoot = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 26 )
+}
+samples/lvl5_shoot = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 27 )
+}
+samples/lvl6_shoot = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 28 )
+}
+samples/lvl7_shoot = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 29 )
+}
+samples/lvl8_shoot = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 30 )
+}
+samples/lvl9_shoot = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 31 )
+}
+
+[sub_resource type="SampleLibrary" id=7]
+
+samples/enemy_shoot = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 32 )
+}
+samples/unit_hit = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 33 )
+}
+
+[sub_resource type="AudioStreamOGGVorbis" id=8]
+
+
+[sub_resource type="SampleLibrary" id=9]
+
+samples/button_click = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 34 )
+}
+samples/button_enter = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 35 )
+}
+
+[sub_resource type="SampleLibrary" id=10]
+
+samples/blood_splash = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 36 )
+}
+
+[sub_resource type="CanvasItemMaterial" id=11]
+
+shader/shader = ExtResource( 39 )
+shader/shading_mode = 0
+shader_param/anim_color = Plane( 1, 1, 0.95, 1 )
+shader_param/anim_max_height = 1.2
+shader_param/anim_speed_multiplier = 7.0
+shader_param/opacity = 1.0
+
+[sub_resource type="CanvasItemMaterial" id=12]
+
+shader/shader = ExtResource( 39 )
+shader/shading_mode = 0
+shader_param/anim_color = Plane( 1, 0.1, 0.2, 1 )
+shader_param/anim_max_height = 32.0
+shader_param/anim_speed_multiplier = 12.0
+shader_param/opacity = 1.0
+
+[sub_resource type="DynamicFont" id=13]
+
+font/size = 18
+font/use_mipmaps = false
+font/use_filter = false
+font/font = ExtResource( 46 )
+
+[sub_resource type="DynamicFont" id=14]
+
+font/size = 18
+font/use_mipmaps = false
+font/use_filter = false
+font/font = ExtResource( 47 )
+
+[sub_resource type="DynamicFont" id=15]
+
+font/size = 16
+font/use_mipmaps = false
+font/use_filter = false
+font/font = ExtResource( 47 )
+
+[sub_resource type="CanvasItemMaterial" id=16]
+
+shader/shader = ExtResource( 39 )
+shader/shading_mode = 0
+shader_param/anim_color = Plane( 0.1, 0.1, 1, 1 )
+shader_param/anim_max_height = 0.6
+shader_param/anim_speed_multiplier = 12.0
+shader_param/opacity = 1.0
+
+[sub_resource type="CanvasItemMaterial" id=17]
+
+shader/shader = ExtResource( 39 )
+shader/shading_mode = 0
+shader_param/anim_color = Plane( 0.7, 0.4, 0.7, 1 )
+shader_param/anim_max_height = 1.0
+shader_param/anim_speed_multiplier = 10.0
+shader_param/opacity = 1.0
+
+[sub_resource type="CanvasItemMaterial" id=18]
+
+shader/shader = ExtResource( 39 )
+shader/shading_mode = 0
+shader_param/anim_color = Plane( 0.1, 0.4, 1, 1 )
+shader_param/anim_max_height = 6.0
+shader_param/anim_speed_multiplier = 9.0
+shader_param/opacity = 1.0
+
+[sub_resource type="CanvasItemMaterial" id=19]
+
+shader/shader = ExtResource( 39 )
+shader/shading_mode = 0
+shader_param/anim_color = Plane( 0.5, 0.4, 1, 1 )
+shader_param/anim_max_height = 2.5
+shader_param/anim_speed_multiplier = 16.0
+shader_param/opacity = 1.0
+
+[sub_resource type="CanvasItemShader" id=20]
+
+_code = {
+"fragment": "
+vec4 col = tex(TEXTURE, UV);
+vec2 ps = TEXTURE_PIXEL_SIZE;
+
+if (col.a > 0.1) {
+	col.b = abs(sin(TIME*1)) + 0.1;
+	col.r = abs(sin(TIME*5)) - 0.1;
+	col.g = abs(cos(TIME*0.1)) + 0.2;
+	//col.a = abs(sin(TIME*2)+0.4);
+	
+	vec4 l_col = tex(TEXTURE, UV - ps);
+}
+
+COLOR = col;
+
+",
+"fragment_ofs": 0,
+"light": "",
+"light_ofs": 0,
+"vertex": "",
+"vertex_ofs": 0
+}
+
+[sub_resource type="CanvasItemMaterial" id=21]
+
+shader/shader = SubResource( 20 )
+shader/shading_mode = 0
+
+[sub_resource type="CanvasItemMaterial" id=22]
+
+shader/shader = ExtResource( 39 )
+shader/shading_mode = 0
+shader_param/anim_color = Plane( 0.9, 0.9, 0.8, 1 )
+shader_param/anim_max_height = 4.0
+shader_param/anim_speed_multiplier = 18.0
+shader_param/opacity = 0.3
+
+[sub_resource type="DynamicFont" id=23]
+
+font/size = 24
+font/use_mipmaps = false
+font/use_filter = false
+font/font = ExtResource( 47 )
+
+[sub_resource type="DynamicFont" id=24]
+
+font/size = 30
+font/use_mipmaps = false
+font/use_filter = false
+font/font = ExtResource( 47 )
+
+[sub_resource type="DynamicFont" id=25]
+
+font/size = 30
+font/use_mipmaps = false
+font/use_filter = false
+font/font = ExtResource( 47 )
+
+[sub_resource type="CanvasItemMaterial" id=26]
+
+shader/shader = ExtResource( 39 )
+shader/shading_mode = 0
+shader_param/anim_color = Plane( 0.8, 0.2, 0.2, 1 )
+shader_param/anim_max_height = 1.2
+shader_param/anim_speed_multiplier = 10.0
+shader_param/opacity = 1.0
+
+[sub_resource type="CanvasItemMaterial" id=27]
+
+shader/shader = ExtResource( 39 )
+shader/shading_mode = 0
+shader_param/anim_color = Plane( 0.8, 0.94, 0.94, 1 )
+shader_param/anim_max_height = 1.2
+shader_param/anim_speed_multiplier = 10.0
+shader_param/opacity = 1.0
+
+[sub_resource type="DynamicFont" id=28]
+
+font/size = 40
+font/use_mipmaps = false
+font/use_filter = false
+font/font = ExtResource( 47 )
+
+[sub_resource type="CanvasItemMaterial" id=29]
+
+shader/shader = ExtResource( 39 )
+shader/shading_mode = 0
+shader_param/anim_color = Plane( 1, 0.2, 0.2, 1 )
+shader_param/anim_max_height = 1.0
+shader_param/anim_speed_multiplier = 17.0
+shader_param/opacity = 1.0
+
+[sub_resource type="CanvasItemMaterial" id=30]
+
+shader/shader = ExtResource( 39 )
+shader/shading_mode = 0
+shader_param/anim_color = Plane( 0.9, 0.5, 0.9, 1 )
+shader_param/anim_max_height = 1.0
+shader_param/anim_speed_multiplier = 14.0
+shader_param/opacity = 1.0
+
+[sub_resource type="CanvasItemMaterial" id=31]
+
+shader/shader = ExtResource( 39 )
+shader/shading_mode = 0
+shader_param/anim_color = Plane( 0.9, 0.9, 0.9, 1 )
+shader_param/anim_max_height = 1.0
+shader_param/anim_speed_multiplier = 14.0
+shader_param/opacity = 1.0
+
+[sub_resource type="DynamicFont" id=32]
+
+font/size = 50
+font/use_mipmaps = false
+font/use_filter = false
+font/font = ExtResource( 46 )
+
+[sub_resource type="DynamicFont" id=33]
+
+font/size = 30
+font/use_mipmaps = false
+font/use_filter = false
+font/font = ExtResource( 47 )
+
+[sub_resource type="DynamicFont" id=34]
+
+font/size = 16
+font/use_mipmaps = true
+font/use_filter = true
+font/font = ExtResource( 46 )
+
+[node name="game" type="Node2D" groups=[
+"game",
+]]
+
+script/script = ExtResource( 1 )
+
+[node name="cam" type="Camera2D" parent="."]
+
+anchor_mode = 0
+rotating = false
+current = true
+zoom = Vector2( 1, 1 )
+limit/left = -10000000
+limit/top = -10000000
+limit/right = 10000000
+limit/bottom = 10000000
+drag_margin/h_enabled = true
+drag_margin/v_enabled = true
+smoothing/enable = false
+smoothing/speed = 5.0
+drag_margin/left = 0.2
+drag_margin/top = 0.2
+drag_margin/right = 0.2
+drag_margin/bottom = 0.2
+script/script = ExtResource( 2 )
+
+[node name="sound" type="Node2D" parent="." groups=[
+"sound",
+]]
+
+script/script = ExtResource( 3 )
+
+[node name="env" type="SamplePlayer2D" parent="sound"]
+
+params/volume_db = 0.0
+params/pitch_scale = 1.0
+params/attenuation/min_distance = 1.0
+params/attenuation/max_distance = 2048.0
+params/attenuation/distance_exp = 1.0
+config/polyphony = 1
+config/samples = SubResource( 1 )
+config/pitch_random = 0.0
+
+[node name="env2" type="SamplePlayer2D" parent="sound"]
+
+params/volume_db = 0.0
+params/pitch_scale = 1.0
+params/attenuation/min_distance = 1.0
+params/attenuation/max_distance = 2048.0
+params/attenuation/distance_exp = 1.0
+config/polyphony = 1
+config/samples = SubResource( 2 )
+config/pitch_random = 0.0
+
+[node name="units_appear" type="SamplePlayer2D" parent="sound"]
+
+params/volume_db = 0.0
+params/pitch_scale = 1.0
+params/attenuation/min_distance = 1.0
+params/attenuation/max_distance = 2048.0
+params/attenuation/distance_exp = 1.0
+config/polyphony = 1
+config/samples = SubResource( 3 )
+config/pitch_random = 0.0
+
+[node name="walk" type="SamplePlayer2D" parent="sound"]
+
+params/volume_db = 0.0
+params/pitch_scale = 1.0
+params/attenuation/min_distance = 1.0
+params/attenuation/max_distance = 2048.0
+params/attenuation/distance_exp = 1.0
+config/polyphony = 1
+config/samples = SubResource( 4 )
+config/pitch_random = 0.0
+
+[node name="objects" type="SamplePlayer2D" parent="sound"]
+
+params/volume_db = 0.0
+params/pitch_scale = 1.0
+params/attenuation/min_distance = 1.0
+params/attenuation/max_distance = 2048.0
+params/attenuation/distance_exp = 1.0
+config/polyphony = 1
+config/samples = SubResource( 5 )
+config/pitch_random = 0.0
+
+[node name="shoot" type="SamplePlayer2D" parent="sound"]
+
+params/volume_db = 0.0
+params/pitch_scale = 1.0
+params/attenuation/min_distance = 1.0
+params/attenuation/max_distance = 2048.0
+params/attenuation/distance_exp = 1.0
+config/polyphony = 1
+config/samples = SubResource( 6 )
+config/pitch_random = 0.0
+
+[node name="units" type="SamplePlayer2D" parent="sound"]
+
+params/volume_db = 0.0
+params/pitch_scale = 1.0
+params/attenuation/min_distance = 1.0
+params/attenuation/max_distance = 2048.0
+params/attenuation/distance_exp = 1.0
+config/polyphony = 1
+config/samples = SubResource( 7 )
+config/pitch_random = 0.0
+
+[node name="stream_player" type="StreamPlayer" parent="sound"]
+
+stream/stream = SubResource( 8 )
+stream/play = false
+stream/loop = false
+stream/volume_db = 0.0
+stream/autoplay = false
+stream/paused = false
+stream/loop_restart_time = 0.0
+stream/buffering_ms = 500
+
+[node name="gui" type="SamplePlayer2D" parent="sound"]
+
+params/volume_db = 0.0
+params/pitch_scale = 1.0
+params/attenuation/min_distance = 1.0
+params/attenuation/max_distance = 2048.0
+params/attenuation/distance_exp = 1.0
+config/polyphony = 1
+config/samples = SubResource( 9 )
+config/pitch_random = 0.0
+
+[node name="blood" type="SamplePlayer2D" parent="sound"]
+
+params/volume_db = 0.0
+params/pitch_scale = 1.0
+params/attenuation/min_distance = 1.0
+params/attenuation/max_distance = 2048.0
+params/attenuation/distance_exp = 1.0
+config/polyphony = 1
+config/samples = SubResource( 10 )
+config/pitch_random = 0.0
+
+[node name="main" type="Node2D" parent="."]
+
+editor/display_folded = true
+
+[node name="floor" type="Node2D" parent="main"]
+
+transform/pos = Vector2( -6, 0 )
+script/script = ExtResource( 37 )
+
+[node name="bg" type="Sprite" parent="main/floor"]
+
+transform/pos = Vector2( 7, 0 )
+transform/scale = Vector2( 19.8126, 32.5195 )
+texture = ExtResource( 38 )
+centered = false
+modulate = Color( 0.0630798, 0.106317, 0.152344, 1 )
+region = true
+region_rect = Rect2( 0, 0, 24, 24 )
+
+[node name="wall_l" type="Sprite" parent="main/floor"]
+
+material/material = SubResource( 11 )
+transform/pos = Vector2( -45.1222, 10.7351 )
+transform/scale = Vector2( 2.46935, 2.46935 )
+z/z = 1
+texture = ExtResource( 40 )
+centered = false
+
+[node name="wall_r" type="Sprite" parent="main/floor"]
+
+material/material = SubResource( 11 )
+transform/pos = Vector2( 431.613, 10 )
+transform/scale = Vector2( 2.46935, 2.46935 )
+z/z = 1
+texture = ExtResource( 40 )
+centered = false
+
+[node name="texs" type="Node2D" parent="main/floor"]
+
+transform/pos = Vector2( 4, 0 )
+
+[node name="tex" type="Sprite" parent="main/floor/texs"]
+
+transform/pos = Vector2( 0.902527, -527.292 )
+transform/scale = Vector2( 2.0463, 2.0463 )
+texture = ExtResource( 41 )
+centered = false
+modulate = Color( 0.0705882, 0.160784, 0, 1 )
+region = true
+region_rect = Rect2( 0, 0, 215, 200 )
+
+[node name="tex4" type="Sprite" parent="main/floor/texs"]
+
+transform/pos = Vector2( 0, -936 )
+transform/scale = Vector2( 2.0463, 2.0463 )
+texture = ExtResource( 41 )
+centered = false
+modulate = Color( 0.0705882, 0.160784, 0, 1 )
+region = true
+region_rect = Rect2( 0, 0, 215, 200 )
+
+[node name="tex5" type="Sprite" parent="main/floor/texs"]
+
+transform/pos = Vector2( 0, -1344 )
+transform/scale = Vector2( 2.0463, 2.0463 )
+texture = ExtResource( 41 )
+centered = false
+modulate = Color( 0.0705882, 0.160784, 0, 1 )
+region = true
+region_rect = Rect2( 0, 0, 215, 200 )
+
+[node name="tex1" type="Sprite" parent="main/floor/texs"]
+
+transform/pos = Vector2( 0, -120 )
+transform/scale = Vector2( 2.0463, 2.0463 )
+texture = ExtResource( 41 )
+centered = false
+modulate = Color( 0, 0, 0, 1 )
+region = true
+region_rect = Rect2( 0, 0, 215, 200 )
+
+[node name="tex2" type="Sprite" parent="main/floor/texs"]
+
+transform/pos = Vector2( 0, 289 )
+transform/scale = Vector2( 2.0463, 2.0463 )
+texture = ExtResource( 41 )
+centered = false
+modulate = Color( 0.0361328, 0.125, 0.118752, 1 )
+region = true
+region_rect = Rect2( 0, 0, 215, 200 )
+
+[node name="tex3" type="Sprite" parent="main/floor/texs"]
+
+transform/pos = Vector2( 0, -1733 )
+transform/scale = Vector2( 2.0463, 2.0463 )
+texture = ExtResource( 41 )
+centered = false
+modulate = Color( 0.0743408, 0.164063, 0, 1 )
+region = true
+region_rect = Rect2( 0, 0, 215, 200 )
+
+[node name="final_boss_effects" type="Node2D" parent="main/floor"]
+
+editor/display_folded = true
+visibility/visible = false
+
+[node name="bg" type="Sprite" parent="main/floor/final_boss_effects"]
+
+material/material = ExtResource( 42 )
+transform/pos = Vector2( 7, 0 )
+transform/scale = Vector2( 19.8126, 30.7056 )
+texture = ExtResource( 38 )
+centered = false
+region = true
+region_rect = Rect2( 0, 0, 24, 24 )
+
+[node name="bg1" type="Sprite" parent="main/floor/final_boss_effects"]
+
+visibility/opacity = 0.65
+transform/pos = Vector2( 7, 0 )
+transform/scale = Vector2( 19.8126, 30.4222 )
+texture = ExtResource( 38 )
+centered = false
+modulate = Color( 0, 0, 0, 1 )
+region = true
+region_rect = Rect2( 0, 0, 24, 24 )
+
+[node name="bg 2" type="Sprite" parent="main/floor/final_boss_effects"]
+
+material/material = SubResource( 12 )
+transform/pos = Vector2( 56.0989, 103.808 )
+transform/scale = Vector2( 0.786928, 0.786928 )
+texture = ExtResource( 43 )
+centered = false
+
+[node name="particles" type="Node2D" parent="main/floor/final_boss_effects"]
+
+visibility/opacity = 0.12
+
+[node name="p" type="Particles2D" parent="main/floor/final_boss_effects/particles"]
+
+transform/pos = Vector2( 15.9605, 106.813 )
+config/amount = 150
+config/lifetime = 2.0
+config/process_mode = 1
+params/direction = 0.0
+params/spread = 50.0
+params/linear_velocity = 200.0
+params/spin_velocity = 1.0
+params/orbit_velocity = 0.0
+params/gravity_direction = 0.0
+params/gravity_strength = 100.0
+params/radial_accel = 0.0
+params/tangential_accel = 0.0
+params/damping = 0.0
+params/initial_angle = 0.0
+params/initial_size = 70.0
+params/final_size = 10.0
+params/hue_variation = 0.0
+params/anim_speed_scale = 1.0
+params/anim_initial_pos = 0.0
+color/color = Color( 0, 0, 0, 1 )
+
+[node name="p8" type="Particles2D" parent="main/floor/final_boss_effects/particles"]
+
+transform/pos = Vector2( 215.961, 296.813 )
+config/amount = 150
+config/lifetime = 2.0
+config/process_mode = 1
+params/direction = 0.0
+params/spread = 500.0
+params/linear_velocity = 200.0
+params/spin_velocity = 1.0
+params/orbit_velocity = 0.0
+params/gravity_direction = 0.0
+params/gravity_strength = 100.0
+params/radial_accel = 0.0
+params/tangential_accel = 0.0
+params/damping = 0.0
+params/initial_angle = 0.0
+params/initial_size = 70.0
+params/final_size = 10.0
+params/hue_variation = 0.0
+params/anim_speed_scale = 1.0
+params/anim_initial_pos = 0.0
+color/color = Color( 0.371094, 0, 0, 1 )
+
+[node name="p4" type="Particles2D" parent="main/floor/final_boss_effects/particles"]
+
+transform/pos = Vector2( -11.2468, 168.029 )
+transform/rot = 13.5979
+config/amount = 150
+config/lifetime = 2.0
+config/process_mode = 1
+params/direction = 0.0
+params/spread = 50.0
+params/linear_velocity = 200.0
+params/spin_velocity = 1.0
+params/orbit_velocity = 0.0
+params/gravity_direction = 0.0
+params/gravity_strength = 100.0
+params/radial_accel = 0.0
+params/tangential_accel = 0.0
+params/damping = 0.0
+params/initial_angle = 0.0
+params/initial_size = 35.0
+params/final_size = 10.0
+params/hue_variation = 0.0
+params/anim_speed_scale = 1.0
+params/anim_initial_pos = 0.0
+color/color = Color( 0, 0, 0, 1 )
+
+[node name="p5" type="Particles2D" parent="main/floor/final_boss_effects/particles"]
+
+transform/pos = Vector2( 433.593, 181.633 )
+transform/rot = -28.2276
+config/amount = 150
+config/lifetime = 2.0
+config/process_mode = 1
+params/direction = 0.0
+params/spread = 50.0
+params/linear_velocity = 200.0
+params/spin_velocity = 1.0
+params/orbit_velocity = 0.0
+params/gravity_direction = 0.0
+params/gravity_strength = 100.0
+params/radial_accel = 0.0
+params/tangential_accel = 0.0
+params/damping = 0.0
+params/initial_angle = 0.0
+params/initial_size = 70.0
+params/final_size = 10.0
+params/hue_variation = 0.0
+params/anim_speed_scale = 1.0
+params/anim_initial_pos = 0.0
+color/color = Color( 0, 0, 0, 1 )
+
+[node name="p6" type="Particles2D" parent="main/floor/final_boss_effects/particles"]
+
+transform/pos = Vector2( 373.737, 104.092 )
+transform/rot = -28.2276
+config/amount = 150
+config/lifetime = 2.0
+config/process_mode = 1
+params/direction = 0.0
+params/spread = 50.0
+params/linear_velocity = 200.0
+params/spin_velocity = 1.0
+params/orbit_velocity = 0.0
+params/gravity_direction = 0.0
+params/gravity_strength = 100.0
+params/radial_accel = 0.0
+params/tangential_accel = 0.0
+params/damping = 0.0
+params/initial_angle = 0.0
+params/initial_size = 35.0
+params/final_size = 10.0
+params/hue_variation = 0.0
+params/anim_speed_scale = 1.0
+params/anim_initial_pos = 0.0
+color/color = Color( 0, 0, 0, 1 )
+
+[node name="p7" type="Particles2D" parent="main/floor/final_boss_effects/particles"]
+
+transform/pos = Vector2( 62.2132, 68.7223 )
+transform/rot = 25.1332
+config/amount = 150
+config/lifetime = 2.0
+config/process_mode = 1
+params/direction = 0.0
+params/spread = 50.0
+params/linear_velocity = 200.0
+params/spin_velocity = 1.0
+params/orbit_velocity = 0.0
+params/gravity_direction = 0.0
+params/gravity_strength = 100.0
+params/radial_accel = 0.0
+params/tangential_accel = 0.0
+params/damping = 0.0
+params/initial_angle = 0.0
+params/initial_size = 35.0
+params/final_size = 10.0
+params/hue_variation = 0.0
+params/anim_speed_scale = 1.0
+params/anim_initial_pos = 0.0
+color/color = Color( 0, 0, 0, 1 )
+
+[node name="p1" type="Particles2D" parent="main/floor/final_boss_effects/particles"]
+
+transform/pos = Vector2( 435.961, 106.813 )
+config/amount = 150
+config/lifetime = 2.0
+config/process_mode = 1
+params/direction = 0.0
+params/spread = 50.0
+params/linear_velocity = 200.0
+params/spin_velocity = 1.0
+params/orbit_velocity = 0.0
+params/gravity_direction = 0.0
+params/gravity_strength = 100.0
+params/radial_accel = 0.0
+params/tangential_accel = 0.0
+params/damping = 0.0
+params/initial_angle = 0.0
+params/initial_size = 35.0
+params/final_size = 10.0
+params/hue_variation = 0.0
+params/anim_speed_scale = 1.0
+params/anim_initial_pos = 0.0
+color/color = Color( 0, 0, 0, 1 )
+
+[node name="p2" type="Particles2D" parent="main/floor/final_boss_effects/particles"]
+
+transform/pos = Vector2( 466.998, 528.865 )
+transform/rot = -111.433
+config/amount = 150
+config/lifetime = 2.0
+config/process_mode = 1
+params/direction = 0.0
+params/spread = 50.0
+params/linear_velocity = 200.0
+params/spin_velocity = 1.0
+params/orbit_velocity = 0.0
+params/gravity_direction = 0.0
+params/gravity_strength = 100.0
+params/radial_accel = 0.0
+params/tangential_accel = 0.0
+params/damping = 0.0
+params/initial_angle = 0.0
+params/initial_size = 70.0
+params/final_size = 50.0
+params/hue_variation = 0.0
+params/anim_speed_scale = 1.0
+params/anim_initial_pos = 0.0
+color/color = Color( 0, 0, 0, 1 )
+
+[node name="p3" type="Particles2D" parent="main/floor/final_boss_effects/particles"]
+
+transform/pos = Vector2( 19.3211, 598.203 )
+transform/rot = -197.567
+config/amount = 150
+config/lifetime = 2.0
+config/process_mode = 1
+params/direction = 0.0
+params/spread = 50.0
+params/linear_velocity = 200.0
+params/spin_velocity = 1.0
+params/orbit_velocity = 0.0
+params/gravity_direction = 0.0
+params/gravity_strength = 100.0
+params/radial_accel = 0.0
+params/tangential_accel = 0.0
+params/damping = 0.0
+params/initial_angle = 0.0
+params/initial_size = 70.0
+params/final_size = 50.0
+params/hue_variation = 0.0
+params/anim_speed_scale = 1.0
+params/anim_initial_pos = 0.0
+color/color = Color( 0, 0, 0, 1 )
+
+[node name="objects" type="Node2D" parent="main"]
+
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="not_objects" type="Node2D" parent="main"]
+
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="units" type="Node2D" parent="main"]
+
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="player" parent="main/units" instance=ExtResource( 44 )]
+
+transform/pos = Vector2( 192.071, 452.768 )
+is_active = true
+
+[node name="projectiles" type="Node2D" parent="main"]
+
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="gui" type="CanvasLayer" parent="." groups=[
+"gui",
+]]
+
+layer = 1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+script/script = ExtResource( 45 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="player_hurt_bg" type="Sprite" parent="gui"]
+
+visibility/visible = false
+visibility/opacity = 0.22
+transform/pos = Vector2( -20.637, 1.26237 )
+transform/scale = Vector2( 19.5489, 30.514 )
+texture = ExtResource( 38 )
+centered = false
+modulate = Color( 1, 0.210938, 0.210938, 1 )
+region = true
+region_rect = Rect2( 0, 0, 24, 24 )
+
+[node name="top" type="Node2D" parent="gui"]
+
+transform/pos = Vector2( 0, -2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="dist" type="Node2D" parent="gui/top"]
+
+transform/pos = Vector2( 0, 71 )
+
+[node name="bg" type="Sprite" parent="gui/top/dist"]
+
+transform/pos = Vector2( -7.13169, -75.1915 )
+transform/scale = Vector2( 18.2146, 4.59479 )
+texture = ExtResource( 38 )
+centered = false
+modulate = Color( 0, 0, 0, 1 )
+region = true
+region_rect = Rect2( 0, 0, 24, 24 )
+
+[node name="bg1" type="Sprite" parent="gui/top/dist/bg"]
+
+transform/pos = Vector2( 0.355996, 18.3167 )
+transform/scale = Vector2( 0.981459, 0.177664 )
+texture = ExtResource( 38 )
+centered = false
+modulate = Color( 0.914063, 0.881844, 0.0892639, 1 )
+region = true
+region_rect = Rect2( 0, 0, 24, 24 )
+
+[node name="passed_dist" type="Label" parent="gui/top/dist"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 245.0
+margin/top = 9.0
+margin/right = 422.0
+margin/bottom = 32.0
+custom_fonts/font = SubResource( 13 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_y = 3
+text = "1000/1000"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="boss" type="Node2D" parent="gui/top"]
+
+visibility/visible = false
+transform/pos = Vector2( 0, 69 )
+
+[node name="bg" type="Sprite" parent="gui/top/boss"]
+
+transform/pos = Vector2( -7.13169, -69.8168 )
+transform/scale = Vector2( 18.2146, 4.70502 )
+texture = ExtResource( 38 )
+centered = false
+modulate = Color( 0, 0, 0, 1 )
+region = true
+region_rect = Rect2( 0, 0, 24, 24 )
+
+[node name="boss" type="Label" parent="gui/top/boss"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 27.0
+margin/top = 18.0
+margin/right = 177.0
+margin/bottom = 49.0
+custom_fonts/font = SubResource( 14 )
+custom_colors/font_color = Color( 1, 0.226563, 0.226563, 1 )
+text = "GORE"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="gore_progressbar" type="Node2D" parent="gui/top/boss"]
+
+transform/pos = Vector2( 128, 8 )
+script/script = ExtResource( 48 )
+init_points = 100
+points = 50
+
+[node name="bg" type="Sprite" parent="gui/top/boss/gore_progressbar"]
+
+transform/pos = Vector2( 3.68317, -1.68319 )
+transform/scale = Vector2( 10.8443, 1.19603 )
+texture = ExtResource( 38 )
+centered = false
+modulate = Color( 0, 0, 0, 1 )
+region = true
+region_rect = Rect2( 0, 0, 24, 24 )
+
+[node name="bar" type="Sprite" parent="gui/top/boss/gore_progressbar"]
+
+transform/pos = Vector2( 3.09265, 6.88286 )
+transform/scale = Vector2( 10.5408, 0.792996 )
+texture = ExtResource( 38 )
+centered = false
+modulate = Color( 1, 0.0234375, 0.275208, 1 )
+region = true
+region_rect = Rect2( 0, 0, 24, 24 )
+
+[node name="val" type="Label" parent="gui/top/boss/gore_progressbar"]
+
+visibility/visible = false
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 81.0
+margin/top = -4.0
+margin/right = 203.0
+margin/bottom = 19.0
+custom_fonts/font = SubResource( 13 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_y = 3
+text = "1000"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="bg" type="Sprite" parent="gui/top"]
+
+editor/display_folded = true
+transform/pos = Vector2( 0, 2 )
+transform/scale = Vector2( 17.7135, 2.8305 )
+texture = ExtResource( 38 )
+centered = false
+region = true
+region_rect = Rect2( 0, 0, 24, 24 )
+
+[node name="bg1" type="Sprite" parent="gui/top/bg"]
+
+transform/pos = Vector2( 0.368282, 2.04084 )
+transform/scale = Vector2( 0.966575, 0.860712 )
+texture = ExtResource( 38 )
+centered = false
+modulate = Color( 0, 0, 0, 1 )
+region = true
+region_rect = Rect2( 0, 0, 24, 24 )
+
+[node name="faith" type="Label" parent="gui/top"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 21.0
+margin/top = 18.0
+margin/right = 171.0
+margin/bottom = 49.0
+custom_fonts/font = SubResource( 14 )
+text = "FAITH"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="faith_icons_pb" type="Node2D" parent="gui/top"]
+
+transform/pos = Vector2( 176, 13 )
+transform/scale = Vector2( 0.75, 0.75 )
+script/script = ExtResource( 49 )
+
+[node name="level" type="Label" parent="gui/top"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 22.0
+margin/top = 42.0
+margin/right = 419.0
+margin/bottom = 73.0
+custom_fonts/font = SubResource( 14 )
+custom_colors/font_color = Color( 1, 0.952637, 0.242188, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/line_spacing = 0
+custom_constants/shadow_offset_y = 2
+text = "LVL. 10"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="spawn_enemies_icons" type="Node2D" parent="gui/top"]
+
+transform/pos = Vector2( 0, 106 )
+
+[node name="exp_progressbar" type="Node2D" parent="gui/top"]
+
+transform/pos = Vector2( 22.8145, 59.8145 )
+script/script = ExtResource( 48 )
+init_points = 100
+points = 50
+
+[node name="bg" type="Sprite" parent="gui/top/exp_progressbar"]
+
+transform/pos = Vector2( 0, 2 )
+transform/scale = Vector2( 15.5371, 0.744472 )
+texture = ExtResource( 38 )
+centered = false
+modulate = Color( 0, 0, 0, 1 )
+region = true
+region_rect = Rect2( 0, 0, 24, 24 )
+
+[node name="bar" type="Sprite" parent="gui/top/exp_progressbar"]
+
+transform/pos = Vector2( 13.0927, 5.88286 )
+transform/scale = Vector2( 14.4845, 0.315723 )
+texture = ExtResource( 38 )
+centered = false
+modulate = Color( 0.900818, 0.0234375, 1, 1 )
+region = true
+region_rect = Rect2( 0, 0, 24, 24 )
+
+[node name="val" type="Label" parent="gui/top/exp_progressbar"]
+
+visibility/visible = false
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 81.0
+margin/top = -4.0
+margin/right = 203.0
+margin/bottom = 19.0
+custom_fonts/font = SubResource( 13 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_y = 3
+text = "1000"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="debuffs" type="Node2D" parent="gui/top"]
+
+visibility/visible = false
+transform/pos = Vector2( 40, 528 )
+z/z = 16
+
+[node name="text" type="Label" parent="gui/top/debuffs"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = -35.0
+margin/top = 19.0
+margin/right = 380.0
+margin/bottom = 96.0
+custom_fonts/font = SubResource( 14 )
+custom_colors/font_color = Color( 1, 0.687317, 0.148438, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 2
+custom_constants/shadow_as_outline = 1
+text = "WEAKNESS! 10
+PACIFISM MASOHISM"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="message_box" type="Node2D" parent="gui/top"]
+
+visibility/visible = false
+transform/pos = Vector2( 11, 71 )
+
+[node name="bg" type="Sprite" parent="gui/top/message_box"]
+
+transform/pos = Vector2( -14.9097, -5.67923 )
+transform/scale = Vector2( 18.0626, 6.0811 )
+texture = ExtResource( 38 )
+centered = false
+modulate = Color( 0, 0, 0, 1 )
+region = true
+region_rect = Rect2( 0, 0, 24, 24 )
+
+[node name="bg1" type="Sprite" parent="gui/top/message_box/bg"]
+
+transform/pos = Vector2( 0.618267, 1.47119 )
+transform/scale = Vector2( 0.936768, 0.849627 )
+texture = ExtResource( 38 )
+centered = false
+region = true
+region_rect = Rect2( 0, 0, 24, 24 )
+
+[node name="bg2" type="Sprite" parent="gui/top/message_box/bg"]
+
+transform/pos = Vector2( 0.955503, 2.62229 )
+transform/scale = Vector2( 0.903981, 0.758235 )
+texture = ExtResource( 38 )
+centered = false
+modulate = Color( 0, 0, 0, 1 )
+region = true
+region_rect = Rect2( 0, 0, 24, 24 )
+
+[node name="header" type="Label" parent="gui/top/message_box"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 26.0
+margin/top = 24.0
+margin/right = 374.0
+margin/bottom = 70.0
+custom_fonts/font = SubResource( 15 )
+custom_colors/font_color = Color( 0.902344, 0.890778, 0.16214, 1 )
+custom_colors/font_color_shadow = Color( 1, 0.167969, 0.226471, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/line_spacing = 2
+custom_constants/shadow_as_outline = 0
+text = "YOU GOT...
+CHAMBER OF REFLECTION"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+script/script = ExtResource( 50 )
+final_text = ""
+typing_speed = 0.1
+
+[node name="desc" type="Label" parent="gui/top/message_box"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 21.0
+margin/top = 61.0
+margin/right = 373.0
+margin/bottom = 115.0
+custom_fonts/font = SubResource( 15 )
+custom_constants/line_spacing = 1
+text = "Enemies are pushed further"
+align = 1
+valign = 1
+autowrap = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+script/script = ExtResource( 50 )
+final_text = ""
+typing_speed = 0.1
+
+[node name="bottom" type="Node2D" parent="gui"]
+
+transform/pos = Vector2( 0, 528 )
+
+[node name="bg" type="Sprite" parent="gui/bottom"]
+
+editor/display_folded = true
+transform/scale = Vector2( 17.7707, 8.09609 )
+texture = ExtResource( 38 )
+centered = false
+modulate = Color( 0.691406, 0, 0, 1 )
+region = true
+region_rect = Rect2( 0, 0, 24, 24 )
+
+[node name="effects_bg" type="Sprite" parent="gui/bottom/bg"]
+
+material/material = ExtResource( 42 )
+texture = ExtResource( 38 )
+centered = false
+region = true
+region_rect = Rect2( 0, 0, 24, 24 )
+
+[node name="bg1" type="Sprite" parent="gui/bottom/bg"]
+
+transform/pos = Vector2( 0.287501, 0.794832 )
+transform/scale = Vector2( 0.974379, 0.915369 )
+texture = ExtResource( 38 )
+centered = false
+modulate = Color( 0, 0, 0, 1 )
+region = true
+region_rect = Rect2( 0, 0, 24, 24 )
+
+[node name="character_portrait" type="Node2D" parent="gui/bottom"]
+
+transform/pos = Vector2( 94.7577, 19.7577 )
+transform/scale = Vector2( 0.929927, 0.929927 )
+script/script = ExtResource( 51 )
+
+[node name="bg" type="Sprite" parent="gui/bottom/character_portrait"]
+
+transform/pos = Vector2( -58.2988, -4.5863 )
+transform/scale = Vector2( 16.5455, 7.1982 )
+texture = ExtResource( 38 )
+centered = false
+modulate = Color( 0, 0, 0, 1 )
+region = true
+region_rect = Rect2( 0, 0, 24, 24 )
+
+[node name="standard" type="Node2D" parent="gui/bottom/character_portrait"]
+
+[node name="tex" type="Sprite" parent="gui/bottom/character_portrait/standard"]
+
+material/material = SubResource( 16 )
+transform/pos = Vector2( 0, 4 )
+transform/scale = Vector2( 2.29405, 2.29405 )
+texture = ExtResource( 52 )
+centered = false
+region = true
+region_rect = Rect2( 0, 0, 120, 60 )
+
+[node name="med_lvl" type="Node2D" parent="gui/bottom/character_portrait"]
+
+editor/display_folded = true
+visibility/visible = false
+
+[node name="tex1" type="Sprite" parent="gui/bottom/character_portrait/med_lvl"]
+
+material/material = SubResource( 17 )
+transform/pos = Vector2( 0, 4 )
+transform/scale = Vector2( 2.29405, 2.29405 )
+texture = ExtResource( 52 )
+centered = false
+region = true
+region_rect = Rect2( 0, 0, 120, 60 )
+
+[node name="tex" type="Sprite" parent="gui/bottom/character_portrait/med_lvl"]
+
+material/material = SubResource( 18 )
+transform/pos = Vector2( 0, 4 )
+transform/scale = Vector2( 2.29405, 2.29405 )
+texture = ExtResource( 52 )
+centered = false
+region = true
+region_rect = Rect2( 0, 0, 120, 60 )
+
+[node name="high_lvl" type="Node2D" parent="gui/bottom/character_portrait"]
+
+editor/display_folded = true
+visibility/visible = false
+
+[node name="tex" type="Sprite" parent="gui/bottom/character_portrait/high_lvl"]
+
+material/material = SubResource( 19 )
+transform/pos = Vector2( 0, 4 )
+transform/scale = Vector2( 2.29405, 2.29405 )
+texture = ExtResource( 52 )
+centered = false
+region = true
+region_rect = Rect2( 0, 0, 120, 60 )
+
+[node name="tex1" type="Sprite" parent="gui/bottom/character_portrait/high_lvl"]
+
+material/material = SubResource( 21 )
+transform/pos = Vector2( 0, 8 )
+transform/scale = Vector2( 2.29405, 2.29405 )
+texture = ExtResource( 52 )
+centered = false
+region = true
+region_rect = Rect2( 0, 0, 120, 60 )
+
+[node name="foreground_textures" type="Node2D" parent="gui/bottom/character_portrait"]
+
+transform/pos = Vector2( -11.6849, 4.396 )
+transform/scale = Vector2( 1.05975, 1.05975 )
+
+[node name="faith" type="Sprite" parent="gui/bottom/character_portrait/foreground_textures"]
+
+material/material = SubResource( 22 )
+transform/pos = Vector2( 0, 4 )
+transform/scale = Vector2( 2.29405, 2.29405 )
+texture = ExtResource( 53 )
+centered = false
+region = true
+region_rect = Rect2( 120, 0, 120, 60 )
+
+[node name="up_bg" type="Sprite" parent="gui/bottom/character_portrait"]
+
+transform/pos = Vector2( -72.1197, -13.9755 )
+transform/scale = Vector2( 17.0812, 1.32067 )
+texture = ExtResource( 38 )
+centered = false
+modulate = Color( 0, 0, 0, 1 )
+region = true
+region_rect = Rect2( 0, 0, 24, 24 )
+
+[node name="down_bg" type="Sprite" parent="gui/bottom/character_portrait"]
+
+transform/pos = Vector2( -57.2988, 145.414 )
+transform/scale = Vector2( 16.5102, 1.30013 )
+texture = ExtResource( 38 )
+centered = false
+modulate = Color( 0, 0, 0, 1 )
+region = true
+region_rect = Rect2( 0, 0, 24, 24 )
+
+[node name="items" type="Node2D" parent="gui/bottom"]
+
+transform/pos = Vector2( 16, 7 )
+
+[node name="left" type="Node2D" parent="gui/bottom/items"]
+
+[node name="right" type="Node2D" parent="gui/bottom/items"]
+
+transform/pos = Vector2( 340, 0 )
+
+[node name="rest_items" type="Label" parent="gui/bottom/items"]
+
+visibility/visible = false
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 328.0
+margin/top = 139.0
+margin/right = 403.0
+margin/bottom = 163.0
+custom_fonts/font = SubResource( 23 )
+custom_colors/font_color = Color( 1, 0.951416, 0.222656, 1 )
+custom_constants/shadow_offset_y = 2
+text = "+3"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="game_name" type="Label" parent="gui/bottom"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 4.0
+margin/top = 163.0
+margin/right = 420.0
+margin/bottom = 194.0
+custom_fonts/font = SubResource( 14 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 1
+text = "- DARK PRAYERS -"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="below_screen_enemy_icons" type="Node2D" parent="gui/bottom"]
+
+[node name="entering_level_info" type="Node2D" parent="gui"]
+
+visibility/visible = false
+transform/pos = Vector2( 57.6159, 135.899 )
+transform/scale = Vector2( 0.842311, 0.842311 )
+
+[node name="entering" type="Label" parent="gui/entering_level_info"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 336.0
+margin/bottom = 31.0
+custom_fonts/font = SubResource( 24 )
+text = "entering..."
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+script/script = ExtResource( 50 )
+final_text = "entering..."
+typing_speed = 0.1
+
+[node name="header" type="Label" parent="gui/entering_level_info"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 19.0
+margin/top = 19.0
+margin/right = 330.0
+margin/bottom = 167.0
+custom_fonts/font = SubResource( 24 )
+custom_colors/font_color_shadow = Color( 0.792969, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/line_spacing = 3
+custom_constants/shadow_offset_y = 0
+text = "
+DESECRATED CEMETERY"
+autowrap = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+script/script = ExtResource( 50 )
+final_text = ""
+typing_speed = 0.1
+
+[node name="popup" type="Node2D" parent="gui"]
+
+process/pause_mode = 2
+visibility/visible = false
+transform/pos = Vector2( 27.6159, 48.8986 )
+transform/scale = Vector2( 0.842311, 0.842311 )
+script/script = ExtResource( 54 )
+
+[node name="bg" type="Sprite" parent="gui/popup"]
+
+visibility/opacity = 0.7
+transform/pos = Vector2( -57.2863, -56.5542 )
+transform/scale = Vector2( 23.2086, 36.2265 )
+texture = ExtResource( 38 )
+centered = false
+modulate = Color( 0, 0, 0, 1 )
+region = true
+region_rect = Rect2( 0, 0, 24, 24 )
+
+[node name="tabs" type="Node2D" parent="gui/popup"]
+
+[node name="tab_too_much_faith" type="Node2D" parent="gui/popup/tabs"]
+
+visibility/visible = false
+
+[node name="bg" type="Sprite" parent="gui/popup/tabs/tab_too_much_faith"]
+
+editor/display_folded = true
+transform/pos = Vector2( -20, 0 )
+transform/scale = Vector2( 19.8126, 30.0509 )
+texture = ExtResource( 38 )
+centered = false
+modulate = Color( 0, 0, 0, 1 )
+region = true
+region_rect = Rect2( 0, 0, 24, 24 )
+
+[node name="bg1" type="Sprite" parent="gui/popup/tabs/tab_too_much_faith/bg"]
+
+transform/pos = Vector2( 0.856143, 0.359205 )
+transform/scale = Vector2( 0.935816, 0.956063 )
+texture = ExtResource( 38 )
+centered = false
+region = true
+region_rect = Rect2( 0, 0, 24, 24 )
+
+[node name="bg2" type="Sprite" parent="gui/popup/tabs/tab_too_much_faith/bg"]
+
+transform/pos = Vector2( 1.5009, 0.740134 )
+transform/scale = Vector2( 0.884793, 0.923738 )
+texture = ExtResource( 38 )
+centered = false
+modulate = Color( 0, 0, 0, 1 )
+region = true
+region_rect = Rect2( 0, 0, 24, 24 )
+
+[node name="header" type="Label" parent="gui/popup/tabs/tab_too_much_faith"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 80.0
+margin/top = 36.0
+margin/right = 334.0
+margin/bottom = 231.0
+custom_fonts/font = SubResource( 25 )
+text = "your faith is too strong"
+valign = 1
+autowrap = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+script/script = ExtResource( 50 )
+final_text = "your faith is too strong"
+typing_speed = 0.02
+
+[node name="logo_red" type="Sprite" parent="gui/popup/tabs/tab_too_much_faith"]
+
+material/material = SubResource( 26 )
+transform/pos = Vector2( 70.2019, 215.313 )
+transform/scale = Vector2( 5.77167, 5.83122 )
+texture = ExtResource( 55 )
+centered = false
+region = true
+region_rect = Rect2( 0, 0, 50, 50 )
+
+[node name="logo_gray" type="Sprite" parent="gui/popup/tabs/tab_too_much_faith"]
+
+visibility/visible = false
+material/material = SubResource( 27 )
+transform/pos = Vector2( 70.2019, 215.313 )
+transform/scale = Vector2( 5.77167, 5.83122 )
+texture = ExtResource( 55 )
+centered = false
+region = true
+region_rect = Rect2( 0, 0, 50, 50 )
+
+[node name="desc" type="Node2D" parent="gui/popup/tabs/tab_too_much_faith"]
+
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="text" type="Label" parent="gui/popup/tabs/tab_too_much_faith/desc"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 48.0
+margin/top = 532.0
+margin/right = 382.0
+margin/bottom = 688.0
+custom_fonts/font = SubResource( 25 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 1, 0.175781, 0.175781, 1 )
+custom_constants/shadow_offset_x = 1
+custom_constants/line_spacing = 5
+custom_constants/shadow_offset_y = 1
+custom_constants/shadow_as_outline = 0
+text = "the devil has arrived"
+align = 1
+autowrap = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+script/script = ExtResource( 50 )
+final_text = "the devil has arrived"
+typing_speed = 0.1
+
+[node name="tab_boss_appears" type="Node2D" parent="gui/popup/tabs"]
+
+visibility/visible = false
+
+[node name="bg" type="Sprite" parent="gui/popup/tabs/tab_boss_appears"]
+
+transform/pos = Vector2( -20, 0 )
+transform/scale = Vector2( 19.8126, 30.0509 )
+texture = ExtResource( 38 )
+centered = false
+modulate = Color( 0, 0, 0, 1 )
+region = true
+region_rect = Rect2( 0, 0, 24, 24 )
+
+[node name="bg1" type="Sprite" parent="gui/popup/tabs/tab_boss_appears/bg"]
+
+transform/pos = Vector2( 0.856143, 0.359205 )
+transform/scale = Vector2( 0.935816, 0.956063 )
+texture = ExtResource( 38 )
+centered = false
+modulate = Color( 1, 0, 0, 1 )
+region = true
+region_rect = Rect2( 0, 0, 24, 24 )
+
+[node name="bg2" type="Sprite" parent="gui/popup/tabs/tab_boss_appears/bg"]
+
+transform/pos = Vector2( 1.5009, 0.740134 )
+transform/scale = Vector2( 0.884793, 0.923738 )
+texture = ExtResource( 38 )
+centered = false
+modulate = Color( 0, 0, 0, 1 )
+region = true
+region_rect = Rect2( 0, 0, 24, 24 )
+
+[node name="warning" type="Label" parent="gui/popup/tabs/tab_boss_appears"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 31.0
+margin/top = 52.0
+margin/right = 431.0
+margin/bottom = 135.0
+custom_fonts/font = SubResource( 28 )
+custom_colors/font_color = Color( 1, 0.523438, 0.880859, 1 )
+text = "WARNING!
+meet the.."
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+script/script = ExtResource( 50 )
+final_text = "WARNING!
+meet the.."
+typing_speed = 0.1
+
+[node name="logo" type="Sprite" parent="gui/popup/tabs/tab_boss_appears"]
+
+material/material = SubResource( 29 )
+transform/pos = Vector2( 29.6453, 173.5 )
+transform/scale = Vector2( 6.30915, 6.37424 )
+texture = ExtResource( 56 )
+centered = false
+region = true
+region_rect = Rect2( 0, 0, 60, 60 )
+
+[node name="desc" type="Node2D" parent="gui/popup/tabs/tab_boss_appears"]
+
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="text" type="Label" parent="gui/popup/tabs/tab_boss_appears/desc"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 38.0
+margin/top = 550.0
+margin/right = 397.0
+margin/bottom = 663.0
+custom_fonts/font = SubResource( 25 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 1, 0.175781, 0.175781, 1 )
+custom_constants/shadow_offset_x = 1
+custom_constants/line_spacing = 11
+custom_constants/shadow_offset_y = 1
+custom_constants/shadow_as_outline = 0
+text = "Maddened Necromancer"
+align = 1
+valign = 2
+autowrap = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+script/script = ExtResource( 50 )
+final_text = "Maddened Necromancer"
+typing_speed = 0.05
+
+[node name="tab_item_reward" type="Node2D" parent="gui/popup/tabs"]
+
+visibility/visible = false
+
+[node name="bg" type="Sprite" parent="gui/popup/tabs/tab_item_reward"]
+
+transform/pos = Vector2( -20, 0 )
+transform/scale = Vector2( 19.8126, 30.0509 )
+texture = ExtResource( 38 )
+centered = false
+modulate = Color( 0, 0, 0, 1 )
+region = true
+region_rect = Rect2( 0, 0, 24, 24 )
+
+[node name="bg1" type="Sprite" parent="gui/popup/tabs/tab_item_reward/bg"]
+
+transform/pos = Vector2( 0.856143, 0.359205 )
+transform/scale = Vector2( 0.935816, 0.956063 )
+texture = ExtResource( 38 )
+centered = false
+modulate = Color( 1, 0.920776, 0.078125, 1 )
+region = true
+region_rect = Rect2( 0, 0, 24, 24 )
+
+[node name="bg2" type="Sprite" parent="gui/popup/tabs/tab_item_reward/bg"]
+
+transform/pos = Vector2( 1.5009, 0.740134 )
+transform/scale = Vector2( 0.884793, 0.923738 )
+texture = ExtResource( 38 )
+centered = false
+modulate = Color( 0, 0, 0, 1 )
+region = true
+region_rect = Rect2( 0, 0, 24, 24 )
+
+[node name="header" type="Label" parent="gui/popup/tabs/tab_item_reward"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 36.0
+margin/top = 25.0
+margin/right = 419.0
+margin/bottom = 204.0
+custom_fonts/font = SubResource( 25 )
+text = "the liberated soul offers a reward"
+valign = 1
+autowrap = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+script/script = ExtResource( 50 )
+final_text = "the liberated soul offers a reward"
+typing_speed = 0.02
+
+[node name="logo" type="Sprite" parent="gui/popup/tabs/tab_item_reward"]
+
+material/material = SubResource( 30 )
+transform/pos = Vector2( 21.57, 161.671 )
+transform/scale = Vector2( 7.75329, 7.83328 )
+texture = ExtResource( 57 )
+centered = false
+region = true
+region_rect = Rect2( 0, 0, 50, 50 )
+
+[node name="desc" type="Node2D" parent="gui/popup/tabs/tab_item_reward"]
+
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="text" type="Label" parent="gui/popup/tabs/tab_item_reward/desc"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 32.0
+margin/top = 553.0
+margin/right = 402.0
+margin/bottom = 666.0
+custom_fonts/font = SubResource( 25 )
+custom_colors/font_color = Color( 1, 0.602875, 0.339844, 1 )
+custom_constants/shadow_offset_x = 1
+custom_constants/line_spacing = 11
+custom_constants/shadow_offset_y = 1
+custom_constants/shadow_as_outline = 0
+text = "CHOOSE WISELY"
+align = 1
+valign = 2
+autowrap = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+script/script = ExtResource( 50 )
+final_text = "CHOOSE WISELY"
+typing_speed = 0.05
+
+[node name="tab_game_over" type="Node2D" parent="gui/popup/tabs"]
+
+[node name="bg" type="Sprite" parent="gui/popup/tabs/tab_game_over"]
+
+editor/display_folded = true
+transform/pos = Vector2( -42.8003, -61.982 )
+transform/scale = Vector2( 21.9202, 36.0332 )
+texture = ExtResource( 38 )
+centered = false
+modulate = Color( 0, 0, 0, 1 )
+region = true
+region_rect = Rect2( 0, 0, 24, 24 )
+
+[node name="bg1" type="Sprite" parent="gui/popup/tabs/tab_game_over/bg"]
+
+transform/pos = Vector2( 0.856143, 0.359205 )
+transform/scale = Vector2( 0.935816, 0.956063 )
+texture = ExtResource( 38 )
+centered = false
+modulate = Color( 0.214844, 0.00167847, 0.0516391, 1 )
+region = true
+region_rect = Rect2( 0, 0, 24, 24 )
+
+[node name="bg2" type="Sprite" parent="gui/popup/tabs/tab_game_over/bg"]
+
+transform/pos = Vector2( 1.5009, 0.740134 )
+transform/scale = Vector2( 0.884793, 0.923738 )
+texture = ExtResource( 38 )
+centered = false
+modulate = Color( 0, 0, 0, 1 )
+region = true
+region_rect = Rect2( 0, 0, 24, 24 )
+
+[node name="logo" type="Sprite" parent="gui/popup/tabs/tab_game_over"]
+
+material/material = SubResource( 31 )
+transform/pos = Vector2( 55.5709, 16.4554 )
+transform/scale = Vector2( 6.55716, 6.6248 )
+z/z = 1
+texture = ExtResource( 57 )
+centered = false
+region = true
+region_rect = Rect2( 50, 0, 50, 50 )
+
+[node name="desc" type="Node2D" parent="gui/popup/tabs/tab_game_over"]
+
+[node name="text" type="Label" parent="gui/popup/tabs/tab_game_over/desc"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 104.0
+margin/top = 397.0
+margin/right = 332.0
+margin/bottom = 448.0
+custom_fonts/font = SubResource( 32 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 1, 0.226563, 0.226563, 1 )
+custom_constants/shadow_offset_x = -2
+custom_constants/shadow_offset_y = -2
+text = "MORTIS"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="but_restart" type="Node2D" parent="gui/popup/tabs/tab_game_over"]
+
+transform/pos = Vector2( 36.8035, 538.993 )
+script/script = ExtResource( 58 )
+type = 5
+
+[node name="bg" type="Sprite" parent="gui/popup/tabs/tab_game_over/but_restart"]
+
+editor/display_folded = true
+transform/scale = Vector2( 14.7531, 5.92347 )
+texture = ExtResource( 38 )
+centered = false
+modulate = Color( 0.695313, 0, 0, 1 )
+region = true
+region_rect = Rect2( 0, 0, 24, 24 )
+
+[node name="bg1" type="Sprite" parent="gui/popup/tabs/tab_game_over/but_restart/bg"]
+
+transform/pos = Vector2( 1.10138, 2.87645 )
+transform/scale = Vector2( 0.910971, 0.761432 )
+texture = ExtResource( 38 )
+centered = false
+modulate = Color( 0, 0, 0, 1 )
+region = true
+region_rect = Rect2( 0, 0, 24, 24 )
+
+[node name="text" type="Label" parent="gui/popup/tabs/tab_game_over/but_restart"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 14.0
+margin/top = 21.0
+margin/right = 338.0
+margin/bottom = 125.0
+custom_fonts/font = SubResource( 33 )
+custom_constants/shadow_offset_x = 1
+custom_constants/line_spacing = 0
+custom_constants/shadow_offset_y = 1
+text = "REWIND"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="tip" type="Node2D" parent="gui/popup/tabs/tab_game_over"]
+
+transform/pos = Vector2( 26.6314, 707.383 )
+transform/scale = Vector2( 0.880462, 0.880462 )
+
+[node name="text" type="Label" parent="gui/popup/tabs/tab_game_over/tip"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 447.0
+margin/bottom = 68.0
+custom_fonts/font = SubResource( 33 )
+custom_colors/font_color = Color( 0.242188, 0.325073, 1, 1 )
+text = "ESCAPE - EXIT"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="text1" type="Label" parent="gui/popup/tabs/tab_game_over/tip"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = -14.0
+margin/top = -264.0
+margin/right = 447.0
+margin/bottom = -196.0
+custom_fonts/font = SubResource( 33 )
+custom_colors/font_color = Color( 1, 0.242188, 0.686219, 1 )
+text = "press space to"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="sys_info" type="Label" parent="gui"]
+
+visibility/visible = false
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 19.0
+margin/top = 129.0
+margin/right = 217.0
+margin/bottom = 286.0
+custom_fonts/font = SubResource( 34 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_as_outline = 1
+text = "SYS INFO
+TEXT"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+

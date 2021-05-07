@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=1]
+
+[ext_resource path="res://sprites/items.png" type="Texture" id=1]
+
+[node name="item_icon" type="Node2D"]
+
+[node name="tex" type="Sprite" parent="."]
+
+transform/pos = Vector2( 3.61592, 2.351 )
+transform/scale = Vector2( 2.34104, 2.34104 )
+texture = ExtResource( 1 )
+centered = false
+region = true
+region_rect = Rect2( 20, 0, 20, 20 )
+
+

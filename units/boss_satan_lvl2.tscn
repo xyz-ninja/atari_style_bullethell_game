@@ -1,0 +1,159 @@
+[gd_scene load_steps=6 format=1]
+
+[ext_resource path="res://scripts/units/boss_satan_lvl2.gd" type="Script" id=1]
+[ext_resource path="res://shaders/white_sine_anim_SHADER.tres" type="Shader" id=2]
+[ext_resource path="res://sprites/med_units.png" type="Texture" id=3]
+[ext_resource path="res://scripts/proc_anim.gd" type="Script" id=4]
+
+[sub_resource type="CanvasItemMaterial" id=1]
+
+shader/shader = ExtResource( 2 )
+shader/shading_mode = 0
+shader_param/anim_color = Plane( 0.8, 0.1, 0.1, 1 )
+shader_param/anim_max_height = 1.0
+shader_param/anim_speed_multiplier = 27.0
+shader_param/opacity = 1.0
+
+[node name="boss_satan_lvl2" type="Node2D"]
+
+script/script = ExtResource( 1 )
+is_active = true
+is_spawn_from_editor = false
+
+[node name="tex1" type="Sprite" parent="."]
+
+material/material = SubResource( 1 )
+transform/pos = Vector2( -4, -7 )
+transform/scale = Vector2( 2.75, 2.75 )
+texture = ExtResource( 3 )
+centered = false
+modulate = Color( 0.42514, 1, 0.191406, 1 )
+region = true
+region_rect = Rect2( 0, 300, 30, 30 )
+script/script = ExtResource( 4 )
+connected_node_path = NodePath("..")
+is_sine_enable = true
+sine_range = Vector2( 0, 8 )
+sine_angle_increase_time = 0.08
+
+[node name="tex" type="Sprite" parent="."]
+
+transform/pos = Vector2( -4, -4 )
+transform/scale = Vector2( 2.75, 2.75 )
+texture = ExtResource( 3 )
+centered = false
+region = true
+region_rect = Rect2( 0, 300, 30, 30 )
+
+[node name="death_effects" type="Node2D" parent="."]
+
+visibility/visible = false
+
+[node name="death_p" type="Particles2D" parent="death_effects"]
+
+transform/pos = Vector2( 56.6395, 33.4065 )
+config/amount = 70
+config/lifetime = 0.8
+config/process_mode = 1
+config/explosiveness = 0.8
+params/direction = 0.0
+params/spread = 30.0
+params/linear_velocity = 70.0
+params/spin_velocity = 0.0
+params/orbit_velocity = 0.0
+params/gravity_direction = 279.0
+params/gravity_strength = 9.8
+params/radial_accel = 0.0
+params/tangential_accel = 0.0
+params/damping = 0.0
+params/initial_angle = 0.0
+params/initial_size = 10.0
+params/final_size = 0.5
+params/hue_variation = 0.0
+params/anim_speed_scale = 1.0
+params/anim_initial_pos = 0.0
+randomness/gravity_direction = 1.0
+color/color = Color( 0.789063, 0, 0.221924, 1 )
+
+[node name="death_p1" type="Particles2D" parent="death_effects"]
+
+transform/pos = Vector2( 12.2167, 41.8458 )
+transform/rot = -1.65153
+config/amount = 70
+config/lifetime = 0.8
+config/process_mode = 1
+config/explosiveness = 0.8
+params/direction = 0.0
+params/spread = 30.0
+params/linear_velocity = 70.0
+params/spin_velocity = 0.0
+params/orbit_velocity = 0.0
+params/gravity_direction = 279.0
+params/gravity_strength = 9.8
+params/radial_accel = 0.0
+params/tangential_accel = 0.0
+params/damping = 0.0
+params/initial_angle = 0.0
+params/initial_size = 10.0
+params/final_size = 0.5
+params/hue_variation = 0.0
+params/anim_speed_scale = 1.0
+params/anim_initial_pos = 0.0
+randomness/gravity_direction = 1.0
+color/color = Color( 0.789063, 0, 0.221924, 1 )
+
+[node name="death_p3" type="Particles2D" parent="death_effects"]
+
+transform/pos = Vector2( 41.6104, 60.1176 )
+transform/rot = -1.65153
+config/amount = 70
+config/lifetime = 0.8
+config/process_mode = 1
+config/explosiveness = 0.8
+params/direction = 0.0
+params/spread = 30.0
+params/linear_velocity = 70.0
+params/spin_velocity = 0.0
+params/orbit_velocity = 0.0
+params/gravity_direction = 279.0
+params/gravity_strength = 9.8
+params/radial_accel = 0.0
+params/tangential_accel = 0.0
+params/damping = 0.0
+params/initial_angle = 0.0
+params/initial_size = 10.0
+params/final_size = 0.5
+params/hue_variation = 0.0
+params/anim_speed_scale = 1.0
+params/anim_initial_pos = 0.0
+randomness/gravity_direction = 1.0
+color/color = Color( 0.789063, 0, 0.221924, 1 )
+
+[node name="death_p2" type="Particles2D" parent="death_effects"]
+
+transform/pos = Vector2( 66.3761, 29.9295 )
+transform/rot = -361.914
+config/amount = 70
+config/lifetime = 0.8
+config/process_mode = 1
+config/explosiveness = 0.8
+params/direction = 0.0
+params/spread = 30.0
+params/linear_velocity = 70.0
+params/spin_velocity = 0.0
+params/orbit_velocity = 0.0
+params/gravity_direction = 279.0
+params/gravity_strength = 9.8
+params/radial_accel = 0.0
+params/tangential_accel = 0.0
+params/damping = 0.0
+params/initial_angle = 0.0
+params/initial_size = 10.0
+params/final_size = 0.5
+params/hue_variation = 0.0
+params/anim_speed_scale = 1.0
+params/anim_initial_pos = 0.0
+randomness/gravity_direction = 1.0
+color/color = Color( 0.789063, 0, 0.221924, 1 )
+
+

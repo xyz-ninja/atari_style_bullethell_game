@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=1]
+
+[ext_resource path="res://shaders/white_sine_anim_SHADER.tres" type="Shader" id=1]
+[ext_resource path="res://sprites/icons.png" type="Texture" id=2]
+
+[sub_resource type="CanvasItemMaterial" id=1]
+
+shader/shader = ExtResource( 1 )
+shader/shading_mode = 0
+shader_param/anim_color = Plane( 0.99, 0.99, 0.99, 1 )
+shader_param/anim_max_height = 0.4
+shader_param/anim_speed_multiplier = 9.0
+shader_param/opacity = 1.0
+
+[node name="unit_attack_direction_marker" type="Node2D" groups=[
+"immovable",
+]]
+
+transform/scale = Vector2( -1, -1 )
+z/z = 30
+
+[node name="icon" type="Sprite" parent="."]
+
+material/material = SubResource( 1 )
+transform/pos = Vector2( 32, -28 )
+transform/scale = Vector2( 3.4, 3.4 )
+texture = ExtResource( 2 )
+centered = false
+region = true
+region_rect = Rect2( 30, 15, 15, 15 )
+
+

@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=1]
+
+[ext_resource path="res://sprites/icons.png" type="Texture" id=1]
+
+[node name="spawn_enemy_icon" type="Node2D"]
+
+[node name="tex" type="Sprite" parent="."]
+
+transform/pos = Vector2( 0, 20 )
+transform/scale = Vector2( 2.5, 2.5 )
+texture = ExtResource( 1 )
+region = true
+region_rect = Rect2( 15, 15, 15, 15 )
+
+

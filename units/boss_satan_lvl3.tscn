@@ -1,0 +1,54 @@
+[gd_scene load_steps=5 format=1]
+
+[ext_resource path="res://scripts/units/boss_satan_lvl3.gd" type="Script" id=1]
+[ext_resource path="res://shaders/intro_logo.tres" type="CanvasItemMaterial" id=2]
+[ext_resource path="res://sprites/big_units.png" type="Texture" id=3]
+[ext_resource path="res://scripts/proc_anim.gd" type="Script" id=4]
+
+[node name="boss_satan_lvl3" type="Node2D"]
+
+script/script = ExtResource( 1 )
+is_active = true
+is_spawn_from_editor = false
+
+[node name="tex1" type="Sprite" parent="."]
+
+material/material = ExtResource( 2 )
+transform/pos = Vector2( 2, -8.34465e-07 )
+transform/scale = Vector2( 2.5, 2.5 )
+texture = ExtResource( 3 )
+centered = false
+modulate = Color( 0.42514, 1, 0.191406, 1 )
+region = true
+region_rect = Rect2( 0, 45, 45, 45 )
+script/script = ExtResource( 4 )
+connected_node_path = NodePath("..")
+is_sine_enable = true
+sine_range = Vector2( 5, 5 )
+sine_angle_increase_time = 0.04
+
+[node name="tex2" type="Sprite" parent="."]
+
+visibility/opacity = 0.65
+transform/pos = Vector2( 4, 0 )
+transform/scale = Vector2( 2.5, 2.5 )
+texture = ExtResource( 3 )
+centered = false
+modulate = Color( 0, 0, 0, 1 )
+region = true
+region_rect = Rect2( 0, 45, 45, 45 )
+script/script = ExtResource( 4 )
+connected_node_path = NodePath("..")
+is_sine_enable = true
+sine_range = Vector2( 5, 5 )
+sine_angle_increase_time = 0.12
+
+[node name="tex" type="Sprite" parent="."]
+
+transform/scale = Vector2( 2.5, 2.5 )
+texture = ExtResource( 3 )
+centered = false
+region = true
+region_rect = Rect2( 0, 45, 45, 45 )
+
+

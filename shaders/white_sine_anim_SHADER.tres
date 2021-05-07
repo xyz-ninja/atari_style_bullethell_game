@@ -1,0 +1,67 @@
+[gd_resource type="CanvasItemShader" format=1]
+
+[resource]
+
+_code = {
+"fragment": "uniform vec4 anim_color = vec4(0.7, 0.5, 0.5, 1.0);
+uniform float anim_max_height = 2;
+uniform float anim_speed_multiplier = 2;
+uniform float opacity = 1.0;
+
+vec2 pixel_size = TEXTURE_PIXEL_SIZE;
+float cur_anim_height = -anim_max_height * abs(cos(TIME * anim_speed_multiplier));
+
+
+
+// если верхний пиксель закрашен опр. цветом то продолжаем анимацию
+vec2 up_pixel_pos = UV + vec2(0, 1) * pixel_size; 
+vec4 up_pixel_color = tex(TEXTURE, up_pixel_pos);
+
+vec4 cur_color = tex(TEXTURE, UV);
+
+bool isWhite(vec4 checkedColor) {
+	if (checkedColor.r > 0.9 && checkedColor.g > 0.9 && checkedColor.b > 0.9) {
+		return true;
+	} 
+	return false;
+}
+
+bool isColorsEquals(vec4 color1, vec4 color2) {
+	if (color1.r == color2.r && color1.g == color2.g && color1.b == color2.b) {
+		return true;
+	}
+	return false;
+}
+
+vec4 sel_color = cur_color;
+
+if (!isWhite(cur_color) && isColorsEquals(up_pixel_color,anim_color)) {
+	sel_color = anim_color;
+} else { 
+	if (isWhite(cur_color)){
+		sel_color = anim_color;
+	} else {
+		vec2 down_pixel_pos = UV + vec2(0, -cur_anim_height) * pixel_size; 
+		vec4 down_pixel_color = tex(TEXTURE, down_pixel_pos);
+		vec2 mid_down_pixel_pos = UV + vec2(0, -cur_anim_height / 2) * pixel_size; 
+		vec4 mid_down_pixel_color = tex(TEXTURE, mid_down_pixel_pos);
+		
+		if (isWhite(down_pixel_color) || isWhite(mid_down_pixel_color)) {
+			sel_color = anim_color;
+		}
+	}
+}
+if (sel_color.a > 0.1) {
+	sel_color.a = opacity;
+}
+COLOR = sel_color;
+
+
+",
+"fragment_ofs": 0,
+"light": "",
+"light_ofs": 0,
+"vertex": "",
+"vertex_ofs": 0
+}
+

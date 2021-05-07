@@ -1,0 +1,13 @@
+[gd_resource type="CanvasItemMaterial" load_steps=2 format=1]
+
+[ext_resource path="res://shaders/white_sine_anim_SHADER.tres" type="Shader" id=1]
+
+[resource]
+
+shader/shader = ExtResource( 1 )
+shader/shading_mode = 0
+shader_param/anim_color = Plane( 0.9, 0.99, 0.99, 1 )
+shader_param/anim_max_height = 10.0
+shader_param/anim_speed_multiplier = 12.0
+shader_param/opacity = 1.0
+

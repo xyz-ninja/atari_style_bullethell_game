@@ -1,0 +1,207 @@
+[gd_scene load_steps=9 format=1]
+
+[ext_resource path="res://scripts/units/player.gd" type="Script" id=1]
+[ext_resource path="res://sprites/textures.png" type="Texture" id=2]
+[ext_resource path="res://sprites/player_fade_anim.png" type="Texture" id=3]
+[ext_resource path="res://sprites/particles_pow_cross.png" type="Texture" id=4]
+[ext_resource path="res://sprites/small_units.png" type="Texture" id=5]
+[ext_resource path="res://sprites/cross_projectile_light.png" type="Texture" id=6]
+
+[sub_resource type="CanvasItemShader" id=1]
+
+_code = {
+"fragment": "
+vec4 col = tex(TEXTURE, UV);
+vec2 ps = TEXTURE_PIXEL_SIZE;
+
+if (col.a > 0.1) {
+	col.b = abs(sin(TIME*2)) + 0.1;
+	col.r = abs(sin(TIME)) - 0.1;
+	col.g = abs(cos(TIME*0.1)) + 0.2;
+	//col.a = abs(sin(TIME*2)+0.4);
+	
+	vec4 l_col = tex(TEXTURE, UV - ps);
+}
+
+COLOR = col;
+
+",
+"fragment_ofs": 0,
+"light": "",
+"light_ofs": 0,
+"vertex": "",
+"vertex_ofs": 0
+}
+
+[sub_resource type="CanvasItemMaterial" id=2]
+
+shader/shader = SubResource( 1 )
+shader/shading_mode = 0
+
+[node name="player" type="Node2D" groups=[
+"player",
+]]
+
+z/z = 1
+script/script = ExtResource( 1 )
+is_spawn_from_editor = false
+
+[node name="fade_anim" type="Node2D" parent="."]
+
+editor/display_folded = true
+visibility/visible = false
+transform/pos = Vector2( 2, 0 )
+
+[node name="bg" type="Sprite" parent="fade_anim"]
+
+visibility/visible = false
+transform/pos = Vector2( 42.4112, 84.722 )
+transform/scale = Vector2( 82.119, 77.5652 )
+texture = ExtResource( 2 )
+modulate = Color( 0.0856018, 0.0897968, 0.117188, 1 )
+region = true
+region_rect = Rect2( 0, 0, 25, 25 )
+
+[node name="tex" type="Sprite" parent="fade_anim"]
+
+transform/pos = Vector2( 24.79, 26.1249 )
+texture = ExtResource( 3 )
+
+[node name="bg1" type="Sprite" parent="fade_anim/tex"]
+
+transform/pos = Vector2( -514.294, 65.8063 )
+transform/scale = Vector2( -20.977, 71.8311 )
+texture = ExtResource( 2 )
+modulate = Color( 0, 0, 0, 1 )
+region = true
+region_rect = Rect2( 0, 0, 25, 25 )
+
+[node name="bg2" type="Sprite" parent="fade_anim/tex"]
+
+transform/pos = Vector2( 509.44, 77.9162 )
+transform/scale = Vector2( -20.977, 71.8311 )
+texture = ExtResource( 2 )
+modulate = Color( 0, 0, 0, 1 )
+region = true
+region_rect = Rect2( 0, 0, 25, 25 )
+
+[node name="bg3" type="Sprite" parent="fade_anim/tex"]
+
+transform/pos = Vector2( -33.4567, 725.797 )
+transform/rot = -90.0
+transform/scale = Vector2( -20.977, 71.8311 )
+texture = ExtResource( 2 )
+modulate = Color( 0, 0, 0, 1 )
+region = true
+region_rect = Rect2( 0, 0, 25, 25 )
+
+[node name="bg4" type="Sprite" parent="fade_anim/tex"]
+
+transform/pos = Vector2( -51.6217, -718.791 )
+transform/rot = -90.0
+transform/scale = Vector2( -20.977, 71.8311 )
+texture = ExtResource( 2 )
+modulate = Color( 0, 0, 0, 1 )
+region = true
+region_rect = Rect2( 0, 0, 25, 25 )
+
+[node name="power_effect" type="Node2D" parent="."]
+
+editor/display_folded = true
+
+[node name="cross" type="Node2D" parent="power_effect"]
+
+visibility/visible = false
+transform/pos = Vector2( 21, 20 )
+
+[node name="p" type="Particles2D" parent="power_effect/cross"]
+
+config/amount = 5
+config/lifetime = 1.0
+config/process_mode = 1
+config/explosiveness = 0.7
+config/texture = ExtResource( 4 )
+params/direction = 0.0
+params/spread = 360.0
+params/linear_velocity = 50.0
+params/spin_velocity = 0.0
+params/orbit_velocity = 0.0
+params/gravity_direction = 0.0
+params/gravity_strength = 9.8
+params/radial_accel = 0.0
+params/tangential_accel = 0.0
+params/damping = 0.0
+params/initial_angle = 0.0
+params/initial_size = 7.0
+params/final_size = 2.0
+params/hue_variation = 0.0
+params/anim_speed_scale = 1.0
+params/anim_initial_pos = 0.0
+
+[node name="masohism_tex" type="Sprite" parent="."]
+
+visibility/visible = false
+transform/pos = Vector2( -13.2797, -11.639 )
+transform/scale = Vector2( 3.85952, 3.85952 )
+texture = ExtResource( 5 )
+centered = false
+modulate = Color( 1, 0.121094, 0.306488, 1 )
+region = true
+region_rect = Rect2( 0, 0, 20, 20 )
+
+[node name="masohism_tex" type="Sprite" parent="masohism_tex"]
+
+transform/pos = Vector2( 0.852216, 0.852216 )
+transform/scale = Vector2( 0.913168, 0.913168 )
+texture = ExtResource( 5 )
+centered = false
+modulate = Color( 0, 0, 0, 1 )
+region = true
+region_rect = Rect2( 0, 0, 20, 20 )
+
+[node name="tex" type="Sprite" parent="."]
+
+transform/scale = Vector2( 2.5, 2.5 )
+texture = ExtResource( 5 )
+centered = false
+modulate = Color( 0, 0.015625, 1, 1 )
+region = true
+region_rect = Rect2( 0, 0, 20, 20 )
+
+[node name="tex1" type="Sprite" parent="."]
+
+editor/display_folded = true
+visibility/visible = false
+material/material = SubResource( 2 )
+transform/pos = Vector2( -2.87189, 0.698029 )
+transform/scale = Vector2( 2.48529, 2.48529 )
+texture = ExtResource( 5 )
+centered = false
+region = true
+region_rect = Rect2( 0, 0, 20, 20 )
+
+[node name="l" type="Light2D" parent="tex1"]
+
+transform/pos = Vector2( 9.71849, 9.2922 )
+transform/scale = Vector2( 2.59285, 2.59285 )
+enabled = true
+editor_only = false
+texture = ExtResource( 6 )
+offset = Vector2( 0, 0 )
+scale = 1.0
+color = Color( 0.25, 1, 0.560547, 1 )
+energy = 2.0
+mode = 0
+range/height = 0.0
+range/z_min = -1024
+range/z_max = 1024
+range/layer_min = 0
+range/layer_max = 0
+range/item_mask = 1
+shadow/enabled = false
+shadow/color = Color( 0, 0, 0, 0 )
+shadow/buffer_size = 2048
+shadow/esm_multiplier = 80.0
+shadow/item_mask = 1
+
+

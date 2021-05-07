@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=1]
+
+[ext_resource path="res://scripts/units/unit_lvl1_bird.gd" type="Script" id=1]
+[ext_resource path="res://shaders/white_sine_anim_SHADER.tres" type="Shader" id=2]
+[ext_resource path="res://sprites/small_units.png" type="Texture" id=3]
+
+[sub_resource type="CanvasItemMaterial" id=1]
+
+shader/shader = ExtResource( 2 )
+shader/shading_mode = 0
+shader_param/anim_color = Plane( 0.1, 0.1, 1, 1 )
+shader_param/anim_max_height = 0.1
+shader_param/anim_speed_multiplier = 12.0
+shader_param/opacity = 1.0
+
+[node name="unit_lvl1_bird" type="Node2D"]
+
+script/script = ExtResource( 1 )
+is_spawn_from_editor = false
+
+[node name="tex1" type="Sprite" parent="."]
+
+material/material = SubResource( 1 )
+transform/pos = Vector2( -1, -1 )
+transform/scale = Vector2( 2.5, 2.5 )
+texture = ExtResource( 3 )
+centered = false
+region = true
+region_rect = Rect2( 0, 40, 20, 19 )
+
+[node name="tex" type="Sprite" parent="."]
+
+transform/scale = Vector2( 2.5, 2.5 )
+texture = ExtResource( 3 )
+centered = false
+modulate = Color( 0.105469, 1, 0.28717, 1 )
+region = true
+region_rect = Rect2( 0, 40, 20, 20 )
+
+

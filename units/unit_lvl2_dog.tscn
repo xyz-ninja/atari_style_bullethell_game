@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=1]
+
+[ext_resource path="res://scripts/units/unit_lvl2_dog.gd" type="Script" id=1]
+[ext_resource path="res://shaders/white_sine_anim_SHADER.tres" type="Shader" id=2]
+[ext_resource path="res://sprites/small_units.png" type="Texture" id=3]
+
+[sub_resource type="CanvasItemMaterial" id=1]
+
+shader/shader = ExtResource( 2 )
+shader/shading_mode = 0
+shader_param/anim_color = Plane( 1, 0.2, 0.2, 1 )
+shader_param/anim_max_height = 0.5
+shader_param/anim_speed_multiplier = 18.0
+shader_param/opacity = 0.4
+
+[node name="unit_lvl2_dog" type="Node2D"]
+
+script/script = ExtResource( 1 )
+is_spawn_from_editor = false
+
+[node name="tex1" type="Sprite" parent="."]
+
+material/material = SubResource( 1 )
+transform/pos = Vector2( 0, -1 )
+transform/scale = Vector2( 2.5, 2.5 )
+texture = ExtResource( 3 )
+centered = false
+modulate = Color( 0.42514, 1, 0.191406, 1 )
+region = true
+region_rect = Rect2( 0, 80, 20, 20 )
+
+[node name="tex" type="Sprite" parent="."]
+
+transform/scale = Vector2( 2.5, 2.5 )
+texture = ExtResource( 3 )
+centered = false
+modulate = Color( 1, 0.191406, 0.324066, 1 )
+region = true
+region_rect = Rect2( 0, 80, 20, 20 )
+
+
